@@ -93,7 +93,9 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      # thunderbird
+      thunderbird
+      kitty
+      _1password-gui
     ];
   };
 
@@ -103,7 +105,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim
+    git
   #  wget
   ];
 
@@ -114,6 +117,12 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  # alias vim to nvim
+  programs.neovim = {
+    vimAlias = true
+    defaultEditor = true
+  };
 
   # List services that you want to enable:
 
