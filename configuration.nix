@@ -120,8 +120,8 @@
 
   # alias vim to nvim
   programs.neovim = {
-    vimAlias = true
-    defaultEditor = true
+    vimAlias = true;
+    defaultEditor = true;
   };
 
   # List services that you want to enable:
