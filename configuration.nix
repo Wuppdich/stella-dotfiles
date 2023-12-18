@@ -95,6 +95,7 @@
       firefox
       thunderbird
       kitty
+      steam
       _1password-gui
     ];
   };
