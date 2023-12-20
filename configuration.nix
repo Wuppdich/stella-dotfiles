@@ -135,6 +135,9 @@
       kitty
       steam
       _1password-gui
+      prusa-slicer
+      openscad
+      vscode
     ];
   };
 
