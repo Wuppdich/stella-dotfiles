@@ -186,6 +186,31 @@
     fsType = "nfs";
     options = [ "nfsvers=4.1" ];
   };
+  fileSystems."/home/alice/Bilder" = {
+    device = "192.168.1.5:/volume1/Personal Files/Pictures";
+    fsType = "nfs";
+    options = [ "nfsvers=4.1" ];
+  };
+  fileSystems."/home/alice/Dokumente" = {
+    device = "192.168.1.5:/volume1/Personal Files/Documents";
+    fsType = "nfs";
+    options = [ "nfsvers=4.1" ];
+  };
+  fileSystems."/home/alice/Musik" = {
+    device = "192.168.1.5:/volume1/Personal Files/Music";
+    fsType = "nfs";
+    options = [ "nfsvers=4.1" ];
+  };
+  fileSystems."/home/alice/Videos" = {
+    device = "192.168.1.5:/volume1/Personal Files/Videos";
+    fsType = "nfs";
+    options = [ "nfsvers=4.1" ];
+  };
+  fileSystems."/home/alice/Downloads" = {
+    device = "192.168.1.5:/volume1/Personal Files/Downloads";
+    fsType = "nfs";
+    options = [ "nfsvers=4.1" ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
