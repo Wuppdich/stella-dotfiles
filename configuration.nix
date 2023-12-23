@@ -141,6 +141,7 @@
       transmission-gtk
       blender
       tor-browser
+      github-desktop
     ];
   };
 
@@ -155,6 +156,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
+    btop
     cudaPackages.cudatoolkit
   #  wget
   ];
