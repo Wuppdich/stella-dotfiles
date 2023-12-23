@@ -138,6 +138,9 @@
       prusa-slicer
       openscad
       vscode
+      transmission-gtk
+      blender
+      tor-browser
     ];
   };
 
@@ -149,6 +152,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
+    cudaPackages.cudatoolkit
   #  wget
   ];
 
@@ -164,9 +168,10 @@
   #   enableSSHSupport = true;
   # };
 
-  # alias vim to nvim
   programs.neovim = {
+    # alias vim to nvim
     vimAlias = true;
+    # set vim as default
     defaultEditor = true;
   };
 
