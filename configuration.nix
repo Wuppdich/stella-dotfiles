@@ -49,7 +49,6 @@
 
   # Enable OpenGL
   hardware.opengl = {
-    enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
@@ -145,8 +144,8 @@
     ];
   };
 
-  # Allow unfree packages
   nixpkgs.config = {
+    # Allow unfree packages
     allowUnfree = true;
     cudaSupport = true;
   };
@@ -157,7 +156,6 @@
     neovim
     git
     btop
-    cudaPackages.cudatoolkit
   #  wget
   ];
 
