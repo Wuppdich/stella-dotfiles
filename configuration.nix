@@ -140,7 +140,7 @@
       transmission-gtk
       blender
       tor-browser
-      github-desktop
+      obsidian
     ];
   };
 
