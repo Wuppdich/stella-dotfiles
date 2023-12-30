@@ -144,6 +144,10 @@
     ];
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
   nixpkgs.config = {
     # Allow unfree packages
     allowUnfree = true;
