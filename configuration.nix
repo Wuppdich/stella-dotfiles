@@ -77,7 +77,7 @@
     open = false;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+	  # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
@@ -197,38 +197,21 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-  
-  fileSystems."/home/alice/Torrents" = {
-    device = "192.168.1.5:/volume1/Torrents";
-    fsType = "nfs";
-    options = [ "nfsvers=4.1" ];
-  };
-  fileSystems."/home/alice/Bilder" = {
-    device = "192.168.1.5:/volume1/Personal Files/Pictures";
-    fsType = "nfs";
-    options = [ "nfsvers=4.1" ];
-  };
-  fileSystems."/home/alice/Dokumente" = {
-    device = "192.168.1.5:/volume1/Personal Files/Documents";
-    fsType = "nfs";
-    options = [ "nfsvers=4.1" ];
-  };
-  fileSystems."/home/alice/Musik" = {
-    device = "192.168.1.5:/volume1/Personal Files/Music";
-    fsType = "nfs";
-    options = [ "nfsvers=4.1" ];
-  };
-  fileSystems."/home/alice/Videos" = {
-    device = "192.168.1.5:/volume1/Personal Files/Videos";
-    fsType = "nfs";
-    options = [ "nfsvers=4.1" ];
-  };
-  fileSystems."/home/alice/Downloads" = {
-    device = "192.168.1.5:/volume1/Personal Files/Downloads";
-    fsType = "nfs";
-    options = [ "nfsvers=4.1" ];
-  };
+  # networking.firewall.enable = false;  
+  fileSystems = 
+    let makeNfsFilesystem = targetDevice: {
+      device = "192.168.1.5:/volume1/" + targetDevice;
+      fsType = "nfs";
+      options = ["nfsvers=4.1" "comment=x-gvfs-hide"];
+    };
+    in {
+      "/home/alice/Bilder" = (makeNfsFilesystem "Personal Files/Pictures");
+      "/home/alice/Dokumente" = (makeNfsFilesystem "Personal Files/Documents");
+      "/home/alice/Musik" = (makeNfsFilesystem "Personal Files/Music");
+      "/home/alice/Videos" = (makeNfsFilesystem "Personal Files/Videos");
+      "/home/alice/Downloads" = (makeNfsFilesystem "Personal Files/Downloads");
+      "/home/alice/Torrents" = (makeNfsFilesystem "Torrents");
+    };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
