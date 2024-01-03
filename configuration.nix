@@ -145,6 +145,8 @@
       blender
       tor-browser
       obsidian
+      heroic
+      itch
     ];
   };
 
