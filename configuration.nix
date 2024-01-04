@@ -137,7 +137,6 @@
       thunderbird
       kitty
       steam
-      _1password-gui
       prusa-slicer
       openscad
       vscode
@@ -147,6 +146,7 @@
       obsidian
       heroic
       itch
+      discord
     ];
   };
 
@@ -186,6 +186,11 @@
     vimAlias = true;
     # set vim as default
     defaultEditor = true;
+  };
+
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "alice" ];
   };
 
   # List services that you want to enable:
