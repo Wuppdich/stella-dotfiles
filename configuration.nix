@@ -143,13 +143,23 @@
       prusa-slicer
       openscad
       vscode
-      transmission-gtk
       blender
       tor-browser
       obsidian
       heroic
       itch
       discord
+      spotify
+      (pkgs.makeDesktopItem {
+        name = "youtube";
+        desktopName = "YouTube";
+        exec = "firefox -P youtube-machine";
+      })
+      (pkgs.makeDesktopItem {
+        name = "twitch";
+        desktopName = "Twitch";
+        exec = "firefox -P twitch-machine";
+      })
     ];
   };
 
@@ -169,6 +179,9 @@
     neovim
     git
     btop
+    wineWowPackages.stable
+    wineWowPackages.waylandFull
+    winetricks
   #  wget
   ];
 
@@ -218,7 +231,6 @@
       "/home/alice/Musik" = (makeNfsFilesystem "Personal Files/Music");
       "/home/alice/Videos" = (makeNfsFilesystem "Personal Files/Videos");
       "/home/alice/Downloads" = (makeNfsFilesystem "Personal Files/Downloads");
-      "/home/alice/Torrents" = (makeNfsFilesystem "Torrents");
     };
 
   # This value determines the NixOS release from which the default
