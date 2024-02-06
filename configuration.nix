@@ -228,7 +228,7 @@
     in {
       "/home/alice/Bilder" = (makeNfsFilesystem "Personal Files/Pictures");
       "/home/alice/Dokumente" = (makeNfsFilesystem "Personal Files/Documents");
-      "/home/alice/Musik" = (makeNfsFilesystem "Personal Files/Music");
+      "/home/alice/Musik" = (makeNfsFilesystem "Music");
       "/home/alice/Videos" = (makeNfsFilesystem "Personal Files/Videos");
       "/home/alice/Downloads" = (makeNfsFilesystem "Personal Files/Downloads");
     };
