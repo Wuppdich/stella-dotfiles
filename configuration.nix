@@ -143,11 +143,14 @@
       prusa-slicer
       openscad
       vscode
+      arduino
       blender
+      gimp
       tor-browser
       obsidian
       heroic
       itch
+      prismlauncher
       discord
       spotify
       (pkgs.makeDesktopItem {
