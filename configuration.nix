@@ -4,6 +4,18 @@
 
 { config, pkgs, ... }:
 
+# https://nixos.wiki/wiki/FAQ#How_can_I_install_a_package_from_unstable_while_remaining_on_the_stable_channel.3F
+# https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs
+# good luck future-girl
+let
+  unstable = import (builtins.fetchGit {
+    name = "nixos-unstable-2024-02-07";
+    url = "https://github.com/nixos/nixpkgs/";
+    # > git ls-remote https://github.com/nixos/nixpkgs nixos-unstable
+    ref = "refs/heads/nixos-unstable";
+    rev = "faf912b086576fd1a15fca610166c98d47bc667e";
+  }) {};
+in
 {
   imports =
     [ # Include the results of the hardware scan.
