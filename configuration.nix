@@ -23,6 +23,19 @@ in
       /etc/nixos/hardware-configuration.nix
     ];
 
+  # optimize store by hardlinking files
+  nix.optimise = {
+    automatic = true;
+    dates = ["daily"];
+  };
+
+  # summon the dump-truck
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 60d";
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
