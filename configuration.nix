@@ -182,7 +182,6 @@
     neovim
     git
     btop
-    wineWowPackages.stable
     wineWowPackages.waylandFull
     winetricks
   #  wget
