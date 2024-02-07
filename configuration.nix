@@ -14,7 +14,8 @@ let
     # > git ls-remote https://github.com/nixos/nixpkgs nixos-unstable
     ref = "refs/heads/nixos-unstable";
     rev = "faf912b086576fd1a15fca610166c98d47bc667e";
-  }) {};
+  })
+  { config = config.nixpkgs.config; };
 in
 {
   imports =
