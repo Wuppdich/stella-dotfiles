@@ -146,7 +146,7 @@ in
   users.users.alice = {
     isNormalUser = true;
     description = "alice";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" ];
     packages = with pkgs; [
       firefox
       thunderbird
@@ -155,7 +155,7 @@ in
       prusa-slicer
       openscad
       vscode
-      arduino
+      unstable.arduino-ide
       blender
       gimp
       tor-browser
@@ -196,7 +196,6 @@ in
     btop
     wineWowPackages.waylandFull
     winetricks
-  #  wget
   ];
 
   environment.etc = {
