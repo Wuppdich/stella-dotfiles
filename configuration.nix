@@ -45,6 +45,12 @@ in
     "/crypto_keyfile.bin" = null;
   };
 
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af" = {
+    device = "/dev/disk/by-uuid/9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af";
+    keyFile = "/crypto_keyfile.bin";
+  };
+
   networking.hostName = "coulon"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
