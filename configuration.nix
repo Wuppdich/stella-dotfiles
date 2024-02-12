@@ -51,6 +51,9 @@ in
     keyFile = "/crypto_keyfile.bin";
   };
 
+  # nct6775 enables Motherboard Sensors (like Voltages)
+  boot.kernelModules = ["nct6775" ];
+
   networking.hostName = "coulon"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
