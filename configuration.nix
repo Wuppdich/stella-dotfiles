@@ -179,6 +179,12 @@ in
       openscad
       vscode
       unstable.arduino-ide
+      (pkgs.makeDesktopItem {
+        name = "arduino-ide";
+        desktopName = "Arduino IDE";
+        exec = "arduino-ide";
+      })
+      thonny
       blender
       gimp
       tor-browser
@@ -219,8 +225,10 @@ in
     btop
     wineWowPackages.waylandFull
     winetricks
+    lm_sensors
   ];
 
+  # fix crackling noises
   environment.etc = {
     "wireplumber/main.lua.d/51-disable-suspension.lua" = {
       text = ''
