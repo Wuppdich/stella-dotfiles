@@ -187,6 +187,7 @@ in
       thonny
       blender
       gimp
+      geeqie
       libreoffice
       tor-browser
       obsidian
