@@ -33,7 +33,8 @@ in
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 60d";
+    persistent = true;
+    options = "--delete-older-than 30d";
   };
 
   # Bootloader.
@@ -187,6 +188,7 @@ in
       thonny
       blender
       gimp
+      vlc
       geeqie
       libreoffice
       tor-browser
