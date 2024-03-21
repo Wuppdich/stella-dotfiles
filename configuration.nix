@@ -46,19 +46,19 @@ in
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-  # Setup keyfile
+    # Setup keyfile
     initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
-  # Enable swap on luks
+      "/crypto_keyfile.bin" = null;
+    };
+    # Enable swap on luks
     initrd.luks.devices."luks-9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af" = {
-    device = "/dev/disk/by-uuid/9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af";
-    keyFile = "/crypto_keyfile.bin";
-  };
-  # nct6775 enables Motherboard Sensors (like Voltages)
+      device = "/dev/disk/by-uuid/9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af";
+      keyFile = "/crypto_keyfile.bin";
+    };
+    # nct6775 enables Motherboard Sensors (like Voltages)
     kernelModules = [ "nct6775" ];
   };
-
+ 
   networking.hostName = "coulon"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -211,6 +211,8 @@ in
         desktopName = "Twitch";
         exec = "firefox -P twitch-machine";
       })
+      monero-gui
+      bisq-desktop
     ];
   };
 
@@ -220,7 +222,6 @@ in
   ];
 
   nixpkgs.config = {
-    # Allow unfree packages
     allowUnfree = true;
     cudaSupport = true;
   };
@@ -287,15 +288,15 @@ in
   programs = {
     neovim = {
       enable = true;
-    # alias vim to nvim
-    vimAlias = true;
+      # alias vim to nvim
+      vimAlias = true;
       # set nvim as default
-    defaultEditor = true;
-  };
+      defaultEditor = true;
+    };
     _1password-gui = {
-    enable = true;
+      enable = true;
       # allow unlocking with user password
-    polkitPolicyOwners = [ "alice" ];
+      polkitPolicyOwners = [ "alice" ];
     };
     firefox.enable = true;
     steam.enable = true;
@@ -311,7 +312,7 @@ in
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;  
+  # networking.firewall.enable = false;
 
   fileSystems = 
     let makeNfsFilesystem = targetDevice: {
