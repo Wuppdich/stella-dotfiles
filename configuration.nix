@@ -297,7 +297,7 @@ in
     let makeNfsFilesystem = targetDevice: {
       device = "192.168.1.5:/volume1/" + targetDevice;
       fsType = "nfs";
-      options = ["nfsvers=4.1" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" "comment=x-gvfs-hide"];
+      options = ["nfsvers=4.1" "nofail" "noauto" "x-systemd.automount" "x-systemd.idle-timeout=600" "comment=x-gvfs-hide"];
     };
     in {
       "/home/alice/Bilder" = (makeNfsFilesystem "Personal Files/Pictures");
