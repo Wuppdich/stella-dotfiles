@@ -38,22 +38,23 @@ in
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   # Setup keyfile
-  boot.initrd.secrets = {
+    initrd.secrets = {
     "/crypto_keyfile.bin" = null;
   };
-
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af" = {
+    initrd.luks.devices."luks-9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af" = {
     device = "/dev/disk/by-uuid/9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af";
     keyFile = "/crypto_keyfile.bin";
   };
-
   # nct6775 enables Motherboard Sensors (like Voltages)
-  boot.kernelModules = ["nct6775" ];
+    kernelModules = [ "nct6775" ];
+  };
 
   networking.hostName = "coulon"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -89,9 +90,6 @@ in
     driSupport32Bit = true;
   };
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-
   hardware.nvidia = {
 
     # Modesetting is required.
@@ -123,15 +121,15 @@ in
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
   services.xserver = {
+    # Enable the X11 windowing system.
+    enable = true;
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    # Load nvidia driver for Xorg and Wayland
+    videoDrivers = ["nvidia"];
+    # Configure keymap in X11
     layout = "de";
     xkbVariant = "";
   };
@@ -162,6 +160,7 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # install specific fonts
   fonts.packages = with pkgs; [
     (google-fonts.override { fonts = [ "Pathway Gothic One" ]; })
   ];
@@ -198,6 +197,7 @@ in
       prismlauncher
       discord
       spotify
+      # desktop entries to launch firefox with custom profiles
       (pkgs.makeDesktopItem {
         name = "youtube";
         desktopName = "YouTube";
@@ -211,6 +211,7 @@ in
     ];
   };
 
+  # required for some package i forgor
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
@@ -257,9 +258,9 @@ in
     };
   };
 
-  environment.variables = {
-    EDITOR = "nvim";
-  };
+  # environment.variables = {
+  #   EDITOR = "nvim";
+  # };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -291,6 +292,7 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;  
+
   fileSystems = 
     let makeNfsFilesystem = targetDevice: {
       device = "192.168.1.5:/volume1/" + targetDevice;
