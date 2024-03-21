@@ -37,6 +37,9 @@ in
     options = "--delete-older-than 30d";
   };
 
+  # enables "nix" command and flakes
+  nix.settings.experimental-features = "nix-command flakes";
+
   # Bootloader.
   boot = {
     loader = {
