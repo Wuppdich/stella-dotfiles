@@ -273,16 +273,22 @@ in
   #   enableSSHSupport = true;
   # };
 
-  programs.neovim = {
+  programs = {
+    neovim = {
+      enable = true;
     # alias vim to nvim
     vimAlias = true;
-    # set vim as default
+      # set nvim as default
     defaultEditor = true;
   };
-
-  programs._1password-gui = {
+    _1password-gui = {
     enable = true;
+      # allow unlocking with user password
     polkitPolicyOwners = [ "alice" ];
+    };
+    firefox.enable = true;
+    steam.enable = true;
+    git.enable = true;
   };
 
   # List services that you want to enable:
