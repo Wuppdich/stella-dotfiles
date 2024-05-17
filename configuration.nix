@@ -137,6 +137,8 @@ in
     xkbVariant = "";
   };
 
+  services.auto-cpufreq.enable = true;
+
   # Configure console keymap
   console.keyMap = "de";
 
@@ -302,6 +304,8 @@ in
     firefox.enable = true;
     steam.enable = true;
     git.enable = true;
+    gamemode.enable = true;
+    gamemode.settings.general.inhibit_screensaver = 0;
   };
 
   # List services that you want to enable:
