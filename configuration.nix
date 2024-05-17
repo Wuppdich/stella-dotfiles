@@ -199,7 +199,9 @@ in
       itch
       prismlauncher
       discord
+      rhythmbox
       spotify
+      calibre
       # desktop entries to launch firefox with custom profiles
       (pkgs.makeDesktopItem {
         name = "youtube";
@@ -228,7 +230,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    python3
+    python3Full
     neovim
     git
     btop
