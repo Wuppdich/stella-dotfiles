@@ -47,13 +47,13 @@ in
       efi.canTouchEfiVariables = true;
     };
     # Setup keyfile
-    initrd.secrets = {
-      "/crypto_keyfile.bin" = null;
-    };
+    initrd = {
+      secrets = { "/crypto_keyfile.bin" = null; };
     # Enable swap on luks
-    initrd.luks.devices."luks-9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af" = {
+      luks.devices."luks-9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af" = {
       device = "/dev/disk/by-uuid/9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af";
       keyFile = "/crypto_keyfile.bin";
+      };
     };
     # nct6775 enables Motherboard Sensors (like Voltages)
     kernelModules = [ "nct6775" ];
@@ -216,14 +216,13 @@ in
     ];
   };
 
-  # required for some package i forgor
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
   nixpkgs.config = {
     allowUnfree = true;
     cudaSupport = true;
+    # required for some package i forgor
+    permittedInsecurePackages = [
+      "electron-25.9.0"
+    ];
   };
 
   # List packages installed in system profile. To search, run:
