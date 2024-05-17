@@ -49,10 +49,10 @@ in
     # Setup keyfile
     initrd = {
       secrets = { "/crypto_keyfile.bin" = null; };
-    # Enable swap on luks
+      # Enable swap on luks
       luks.devices."luks-9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af" = {
-      device = "/dev/disk/by-uuid/9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af";
-      keyFile = "/crypto_keyfile.bin";
+        device = "/dev/disk/by-uuid/9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af";
+        keyFile = "/crypto_keyfile.bin";
       };
     };
     # nct6775 enables Motherboard Sensors (like Voltages)
