@@ -95,7 +95,7 @@ in
 
   hardware.nvidia = {
 
-    # Modesetting is required.
+    # Modesetting is required. TODO: But switching this to "true" makes the login screen fail.
     modesetting.enable = false;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
@@ -104,7 +104,7 @@ in
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
 
-    # ensures all GPUs stay away during headless mode
+    # ensures all GPUs stay awake during headless mode
     nvidiaPersistenced = true;
 
     # Use the NVidia open source kernel module (not to be confused with the
