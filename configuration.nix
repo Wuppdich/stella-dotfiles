@@ -45,15 +45,24 @@
     kernelModules = [ "nct6775" ];
   };
  
-  networking.hostName = "coulon"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+    hostName = "coulon"; # Define your hostname.
+    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # Configure network proxy if necessary
+    # networking.proxy.default = "http://user:password@proxy:port/";
+    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    # networking.firewall.enable = false;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    # Enable networking
+    networkmanager.enable = true;
+  };
+
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -252,10 +261,6 @@
     };
   };
 
-  # environment.variables = {
-  #   EDITOR = "nvim";
-  # };
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -288,12 +293,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   fileSystems = 
     let makeNfsFilesystem = targetDevice: {
