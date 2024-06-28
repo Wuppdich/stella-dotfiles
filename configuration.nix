@@ -3,20 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
-# https://nixos.wiki/wiki/FAQ#How_can_I_install_a_package_from_unstable_while_remaining_on_the_stable_channel.3F
-# https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs
-# good luck future-girl
-let
-  unstable = import (builtins.fetchGit {
-    name = "nixos-unstable-2024-02-07";
-    url = "https://github.com/nixos/nixpkgs/";
-    # > git ls-remote https://github.com/nixos/nixpkgs nixos-unstable
-    ref = "refs/heads/nixos-unstable";
-    rev = "faf912b086576fd1a15fca610166c98d47bc667e";
-  })
-  { config = config.nixpkgs.config; };
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -95,7 +81,7 @@ in
 
   hardware.nvidia = {
     # Modesetting is required. TODO: But switching this to "true" makes the login screen fail.
-    modesetting.enable = false;
+    modesetting.enable = true;
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     powerManagement.enable = true;
     # ensures all GPUs stay awake during headless mode
@@ -124,8 +110,10 @@ in
     # Load nvidia driver for Xorg and Wayland
     videoDrivers = ["nvidia"];
     # Configure keymap in X11
-    layout = "de";
-    xkbVariant = "";
+    xkb = {
+      layout = "de";
+      variant = "";
+    };
   };
 
   services.auto-cpufreq.enable = true;
@@ -174,12 +162,7 @@ in
       prusa-slicer
       openscad
       vscode
-      unstable.arduino-ide
-      (pkgs.makeDesktopItem {
-        name = "arduino-ide";
-        desktopName = "Arduino IDE";
-        exec = "arduino-ide";
-      })
+      arduino-ide
       thonny
       blender
       gimp
@@ -189,7 +172,7 @@ in
       tor-browser
       obsidian
       heroic
-      itch
+      # itch
       prismlauncher
       discord
       rhythmbox
