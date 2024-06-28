@@ -146,7 +146,7 @@
 
   # install specific fonts
   fonts.packages = with pkgs; [
-    (google-fonts.override { fonts = [ "Pathway Gothic One" ]; })
+    (google-fonts.override { fonts = [ "Pathway Gothic One" "Roboto" ]; })
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -168,6 +168,7 @@
       gimp
       vlc
       geeqie
+      roomeqwizard
       libreoffice
       tor-browser
       obsidian
@@ -191,6 +192,7 @@
       })
       monero-gui
       bisq-desktop
+      gpu-screen-recorder
     ];
   };
 
