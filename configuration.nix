@@ -283,6 +283,7 @@
     firefox.enable = true;
     steam = {
       enable = true;
+      remotePlay.openFirewall = true;
     };
     git.enable = true;
     gamemode.enable = true;
