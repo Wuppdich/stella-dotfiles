@@ -199,7 +199,6 @@
         desktopName = "Twitch";
         exec = "firefox -P twitch-machine";
       })
-      monero-gui
       bisq-desktop
       gpu-screen-recorder
     ];
