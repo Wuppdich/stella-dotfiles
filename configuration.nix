@@ -24,7 +24,18 @@
   };
 
   # enables "nix" command and flakes
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings = {
+    # additional binary caches to use
+    substituters = [
+      "https://cuda-maintainers.cachix.org"
+      "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
+      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+    experimental-features = "nix-command flakes";
+  };
 
   # Bootloader.
   boot = {
