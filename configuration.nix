@@ -309,6 +309,7 @@
   
 
   system = {
+    defaultChannel = https://nixos.org/channels/nixos-24.05;
     autoUpgrade = {
       enable = true;
       operation = "boot";
