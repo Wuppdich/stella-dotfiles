@@ -1,3 +1,5 @@
+# run "sudo nix-channel --add https://github.com/XYZ nixos" to add a new channel as the default.
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -349,7 +351,6 @@
   
 
   system = {
-    defaultChannel = https://nixos.org/channels/nixos-24.05;
     autoUpgrade = {
       enable = true;
       operation = "boot";
