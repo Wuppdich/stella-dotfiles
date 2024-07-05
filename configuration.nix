@@ -10,6 +10,7 @@
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
     <home-manager/nixos>
+    ./allowedUnfree.nix
   ];
 
   # optimize store by hardlinking files
@@ -221,27 +222,6 @@
   };
 
   nixpkgs.config = {
-    allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
-        # declare allowed unfree packages here
-        "nvidia-x11"
-        "nvidia-persistenced"
-        "nvidia-settings"
-        "cuda_cudart"
-        "cuda_nvcc"
-        "cuda_cccl"
-        "libcublas"
-        "1password"
-        "steam"
-        "steam-original"
-        "steam-run"
-        "vscode"
-        "blender"
-        "roomeqwizard"
-        "obsidian"
-        "discord"
-        "spotify"
-      ];
     cudaSupport = true;
     # required for some package i forgor
     permittedInsecurePackages = [
