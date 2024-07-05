@@ -222,6 +222,11 @@
   };
 
   nixpkgs.config = {
+    # alias for the unstable channel
+    # (channel needs to be added via nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable)
+    packageOverrides = pkgs: {
+      unstable = import <nixos-unstable> {config = config.nixpkgs.config; };
+    };
     cudaSupport = true;
     # required for some package i forgor
     permittedInsecurePackages = [
@@ -328,8 +333,6 @@
       "/home/alice/Videos" = (makeNfsFilesystem "Personal Files/Videos");
       "/home/alice/Downloads" = (makeNfsFilesystem "Personal Files/Downloads");
     };
-
-  
 
   system = {
     autoUpgrade = {
