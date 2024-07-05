@@ -6,10 +6,11 @@
 
 { config, pkgs, lib, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-    ];
+  imports = [ 
+    # Include the results of the hardware scan.
+    /etc/nixos/hardware-configuration.nix
+    <home-manager/nixos>
+  ];
 
   # optimize store by hardlinking files
   nix.optimise = {
@@ -296,7 +297,7 @@
   };
 
   programs = {
-      # Some programs need SUID wrappers, can be configured further or are
+    # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
     # programs.mtr.enable = true;
     # programs.gnupg.agent = {
