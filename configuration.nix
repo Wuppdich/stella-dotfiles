@@ -11,6 +11,7 @@
     /etc/nixos/hardware-configuration.nix
     <home-manager/nixos>
     ./allowedUnfree.nix
+    ./musnix
   ];
 
   # optimize store by hardlinking files
@@ -177,7 +178,7 @@
   users.users.alice = {
     isNormalUser = true;
     description = "alice";
-    extraGroups = [ "networkmanager" "wheel" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "audio" ];
     packages = with pkgs; [
       firefox
       thunderbird
@@ -225,6 +226,8 @@
       lynis
     ];
   };
+
+  musnix.enable = true;
 
   nixpkgs.config = {
     # alias for the unstable channel
