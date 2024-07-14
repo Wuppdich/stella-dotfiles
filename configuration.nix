@@ -327,7 +327,7 @@
 
   fileSystems = 
     let makeNfsFilesystem = targetDevice: {
-      device = "192.168.1.5:/volume1/" + targetDevice;
+      device = "fragment-1:/volume1/" + targetDevice;
       fsType = "nfs";
       options = ["nfsvers=4.1" "nofail" "noauto" "x-systemd.automount" "x-systemd.idle-timeout=600" "comment=x-gvfs-hide"];
     };
