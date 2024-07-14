@@ -191,6 +191,11 @@
       blender
       gimp
       vlc
+      vcv-rack
+      ardour
+      bitwig-studio
+      audacity
+      plugdata
       geeqie
       roomeqwizard
       libreoffice

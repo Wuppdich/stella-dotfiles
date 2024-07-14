@@ -17,6 +17,8 @@
         "steam-run"
         "vscode"
         "blender"
+        "vcv-rack"
+        "bitwig-studio"
         "roomeqwizard"
         "obsidian"
         "discord"
