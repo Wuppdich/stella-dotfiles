@@ -178,7 +178,11 @@
   users.users.alice = {
     isNormalUser = true;
     description = "alice";
-    extraGroups = [ "networkmanager" "wheel" "dialout" "audio" ];
+    # "wheel" for sudo
+    # "dialout" for parallel protocols (moisture sensor)
+    # "audio" for realtime audio
+    # "render" and "video" to load kernel modules for blender TODO: does not work
+    extraGroups = [ "networkmanager" "wheel" "dialout" "audio" "render" "video" ];
     packages = with pkgs; [
       firefox
       thunderbird
