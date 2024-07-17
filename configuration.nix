@@ -28,7 +28,6 @@
     options = "--delete-older-than 30d";
   };
 
-  # enables "nix" command and flakes
   nix.settings = {
     # additional binary caches to use
     substituters = [
