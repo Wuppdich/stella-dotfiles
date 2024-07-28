@@ -12,6 +12,7 @@
     <home-manager/nixos>
     ./allowedUnfree.nix
     ./musnix
+    ./nagfix.nix
   ];
 
   # optimize store by hardlinking files
