@@ -211,7 +211,7 @@
       tor-browser
       obsidian
       heroic
-      # itch
+      unstable.itch
       prismlauncher
       discord
       rhythmbox
