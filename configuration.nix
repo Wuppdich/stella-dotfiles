@@ -140,7 +140,13 @@
     };
   };
 
-  services.auto-cpufreq.enable = true;
+  # deactivated due to gnome-power-governor
+  # services.auto-cpufreq.enable = true;
+  # services.auto-cpufreq.settings = {
+  #   charger = {
+  #     turbo = "auto";
+  #   };
+  # };
 
   # Configure console keymap
   console.keyMap = "de";
