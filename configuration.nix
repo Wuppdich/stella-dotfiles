@@ -58,8 +58,6 @@
     };
     # nct6775 enables Motherboard Sensors (like Voltages)
     kernelModules = [ "nct6775" ];
-    # load AMD Ryzen System Management Unit kernel driver
-    extraModulePackages = with config.boot.kernelPackages; [ ryzen-smu ];
   };
  
   networking = {
@@ -249,7 +247,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    linuxKernel.packages.linux_6_6.ryzen-smu
     python3Full
     neovim
     git
