@@ -214,7 +214,6 @@
       heroic
       unstable.itch
       prismlauncher
-      modrinth-app
       discord
       rhythmbox
       spotify
@@ -236,11 +235,7 @@
       lynis
     ];
   };
-
-  environment.sessionVariables = rec{
-    WEBKIT_DISABLE_DMABUF_RENDERER = "1";
-  };
-
+  
   musnix.enable = true;
 
   nixpkgs.config = {
