@@ -214,6 +214,7 @@
       heroic
       unstable.itch
       prismlauncher
+      modrinth-app
       discord
       rhythmbox
       spotify
@@ -234,6 +235,10 @@
       vulnix
       lynis
     ];
+  };
+
+  environment.sessionVariables = rec{
+    WEBKIT_DISABLE_DMABUF_RENDERER = "1";
   };
 
   musnix.enable = true;

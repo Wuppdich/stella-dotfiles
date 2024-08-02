@@ -15,6 +15,8 @@
         "steam"
         "steam-original"
         "steam-run"
+        "modrinth-app"
+        "modrinth-app-unwrapped"
         "vscode"
         "blender"
         "vcv-rack"
