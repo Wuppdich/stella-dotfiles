@@ -6,40 +6,38 @@
 
 { config, pkgs, lib, ... }:
 {
-  imports = [ 
+  imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
     <home-manager/nixos>
     ./allowedUnfree.nix
     ./musnix
-    ./nagfix.nix
+    ./fix.nix
   ];
 
-  # optimize store by hardlinking files
-  nix.optimise = {
-    automatic = true;
-    dates = ["daily"];
-  };
-
-  # summon the dump-truck
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    persistent = true;
-    options = "--delete-older-than 30d";
-  };
-
-  nix.settings = {
-    # additional binary caches to use
-    substituters = [
-      "https://cuda-maintainers.cachix.org"
-      "https://nix-community.cachix.org"
-    ];
-    trusted-public-keys = [
-      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-    experimental-features = "nix-command flakes";
+  nix = {
+    optimise = {
+      automatic = true;
+      dates = ["daily"];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      persistent = true;
+      options = "--delete-older-than 30d";
+    };
+    settings = {
+      # additional binary caches to use
+      substituters = [
+        "https://cuda-maintainers.cachix.org"
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      experimental-features = "nix-command flakes";
+    };
   };
 
   # Bootloader.
@@ -84,76 +82,70 @@
   time.timeZone = "Europe/Berlin";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "de_DE.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
-  # Enable OpenGL
-  hardware.opengl = {
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    powerManagement.enable = true;
-    # ensures all GPUs stay awake during headless mode
-    nvidiaPersistenced = true;
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = true;
-    # Enable the Nvidia settings menu,
-	  # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
-  services.xserver = {
-    # Enable the X11 windowing system.
-    enable = true;
-    # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    # Load nvidia driver for Xorg and Wayland
-    videoDrivers = ["nvidia"];
-    # Configure keymap in X11
-    xkb = {
-      layout = "de";
-      variant = "";
+  i18n = {
+    defaultLocale = "de_DE.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "de_DE.UTF-8";
+      LC_IDENTIFICATION = "de_DE.UTF-8";
+      LC_MEASUREMENT = "de_DE.UTF-8";
+      LC_MONETARY = "de_DE.UTF-8";
+      LC_NAME = "de_DE.UTF-8";
+      LC_NUMERIC = "de_DE.UTF-8";
+      LC_PAPER = "de_DE.UTF-8";
+      LC_TELEPHONE = "de_DE.UTF-8";
+      LC_TIME = "de_DE.UTF-8";
     };
   };
 
-  # deactivated due to gnome-power-governor
-  # services.auto-cpufreq.enable = true;
-  # services.auto-cpufreq.settings = {
-  #   charger = {
-  #     turbo = "auto";
-  #   };
-  # };
+  hardware = {
+    opengl = {
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+    nvidia = {
+      # Modesetting is required.
+      modesetting.enable = true;
+      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+      powerManagement.enable = true;
+      # ensures all GPUs stay awake during headless mode
+      nvidiaPersistenced = true;
+      # Use the NVidia open source kernel module (not to be confused with the
+      # independent third-party "nouveau" open source driver).
+      # Support is limited to the Turing and later architectures. Full list of 
+      # supported GPUs is at: 
+      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+      # Only available from driver 515.43.04+
+      # Currently alpha-quality/buggy, so false is currently the recommended setting.
+      open = true;
+      # Enable the Nvidia settings menu,
+      # accessible via `nvidia-settings`.
+      nvidiaSettings = true;
+      # Optionally, you may need to select the appropriate driver version for your specific GPU.
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+  };
+
+  services = {
+    xserver = {
+      # Enable the X11 windowing system.
+      enable = true;
+      # Enable the GNOME Desktop Environment.
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+      # Load nvidia driver for Xorg and Wayland
+      videoDrivers = ["nvidia"];
+      # Configure keymap in X11
+      xkb = {
+        layout = "de";
+        variant = "";
+      };
+    };
+    # Enable CUPS to print documents.
+    printing.enable = true;
+  };
 
   # Configure console keymap
   console.keyMap = "de";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -172,6 +164,8 @@
     #media-session.enable = true;
   };
 
+  musnix.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -189,36 +183,8 @@
     # "audio" for realtime audio
     extraGroups = [ "networkmanager" "wheel" "dialout" "audio" ];
     packages = with pkgs; [
+      # internet
       firefox
-      thunderbird
-      kitty
-      steam
-      prusa-slicer
-      openscad
-      vscode
-      arduino-ide
-      thonny
-      blender
-      gimp
-      vlc
-      vcv-rack
-      ardour
-      bitwig-studio
-      audacity
-      plugdata
-      geeqie
-      roomeqwizard
-      libreoffice
-      (texliveMedium.withPackages (ps: with ps; [ blindtext multirow roboto makecell fontaxes]))
-      tor-browser
-      obsidian
-      heroic
-      unstable.itch
-      prismlauncher
-      discord
-      rhythmbox
-      spotify
-      calibre
       # desktop entries to launch firefox with custom profiles
       (pkgs.makeDesktopItem {
         name = "youtube";
@@ -230,14 +196,48 @@
         desktopName = "Twitch";
         exec = "firefox -P twitch-machine";
       })
+      thunderbird
+      tor-browser
+      discord
+      # programmierung
+      kitty
+      vscode
+      arduino-ide
+      thonny
+      # gaming
+      steam
+      heroic
+      unstable.itch
+      prismlauncher
+      # 3D/CAD
+      prusa-slicer
+      openscad
+      blender
+      # Bilder
+      gimp
+      vlc
+      geeqie
+      # audio
+      spotify
+      rhythmbox
+      vcv-rack
+      ardour
+      bitwig-studio
+      audacity
+      plugdata
+      roomeqwizard
+      # office
+      libreoffice
+      (texliveMedium.withPackages (ps: with ps; [ blindtext multirow roboto makecell fontaxes]))
+      obsidian
+      calibre
+      # crypto
       bisq-desktop
       gpu-screen-recorder
       vulnix
       lynis
     ];
   };
-  
-  musnix.enable = true;
 
   nixpkgs.config = {
     # alias for the unstable channel
@@ -255,13 +255,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # libs/envs/daemons
     python3Full
-    neovim
-    git
-    btop
     wineWowPackages.waylandFull
     winetricks
     lm_sensors
+    # tools
+    neovim
+    git
+    btop
+    # settings
     # blend file thumbnailer
     (pkgs.writeTextFile {
       name = "blender thumbnails";
@@ -274,30 +277,6 @@
       destination = "/share/thumbnailers/blender.thumbnailer";
     })
   ];
-
-  # fix crackling noises
-  environment.etc = {
-    "wireplumber/main.lua.d/51-disable-suspension.lua" = {
-      text = ''
-        table.insert (alsa_monitor.rules, {
-          matches = {
-            {
-              -- Matches all sources.
-              { "node.name", "matches", "alsa_input.*" },
-            },
-            {
-              -- Matches all sinks.
-              { "node.name", "matches", "alsa_output.*" },
-            },
-          },
-          apply_properties = {
-            ["session.suspend-timeout-seconds"] = 300,  -- 0 disables suspend
-          },
-        })
-      '';
-      mode = "0554";
-    };
-  };
 
   programs = {
     # Some programs need SUID wrappers, can be configured further or are
@@ -331,6 +310,8 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # nfs ohne kerberos ist nicht transparent. Alle Dateien werden aktuell auf dem Server
+  # dem "admin"-Nutzer zugeschrieben. 
   fileSystems = 
     let makeNfsFilesystem = targetDevice: {
       device = "fragment-1:/volume1/" + targetDevice;
