@@ -209,6 +209,7 @@
       geeqie
       roomeqwizard
       libreoffice
+      (texliveMedium.withPackages (ps: with ps; [ blindtext multirow roboto makecell fontaxes]))
       tor-browser
       obsidian
       heroic
