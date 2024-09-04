@@ -206,6 +206,8 @@
       thonny
       # gaming
       steam
+      lutris
+      ludusavi
       heroic
       unstable.itch
       prismlauncher
@@ -233,9 +235,6 @@
       calibre
       # crypto
       bisq-desktop
-      gpu-screen-recorder
-      vulnix
-      lynis
     ];
   };
 
@@ -256,6 +255,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # libs/envs/daemons
+    nixd
+    nixfmt-rfc-style
     python3Full
     wineWowPackages.waylandFull
     winetricks
