@@ -213,7 +213,7 @@
       prismlauncher
       # 3D/CAD
       prusa-slicer
-      openscad
+      openscad-unstable
       blender
       # Bilder
       gimp
@@ -255,8 +255,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # libs/envs/daemons
-    nixd
-    nixfmt-rfc-style
     python3Full
     wineWowPackages.waylandFull
     winetricks
