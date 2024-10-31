@@ -9,6 +9,7 @@
         "nvidia-settings"
         "cuda_cudart"
         "cuda_nvcc"
+        "cuda_nvml_dev"
         "cuda_cccl"
         "libcublas"
         "1password"

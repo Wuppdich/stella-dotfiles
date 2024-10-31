@@ -215,6 +215,7 @@
       prusa-slicer
       openscad-unstable
       blender
+      freecad
       # Bilder
       gimp
       vlc
