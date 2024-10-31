@@ -326,9 +326,13 @@
       "/home/alice/Downloads" = (makeNfsFilesystem "Personal Files/Downloads");
     };
 
+  # The nix-daemon's scheduling priority is set lowest to lessen the impact on system performance
+  # during auto-Upgrades
+  nix.daemonIOSchedPriority = 7; # 0 is highest, 7 is lowest
+
   system = {
     autoUpgrade = {
-      enable = false;
+      enable = true;
       operation = "boot";
     };
     # This value determines the NixOS release from which the default
