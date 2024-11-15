@@ -215,8 +215,7 @@
       prusa-slicer
       openscad-unstable
       blender
-      freecad
-      # Bilder
+      unstable.freecad
       gimp
       vlc
       geeqie
