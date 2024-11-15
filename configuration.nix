@@ -211,7 +211,7 @@
       heroic
       unstable.itch
       prismlauncher
-      # 3D/CAD
+      # CGI/CAD
       prusa-slicer
       openscad-unstable
       blender
