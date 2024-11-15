@@ -255,7 +255,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # libs/envs/daemons
-    python3Full
     wineWowPackages.waylandFull
     winetricks
     lm_sensors
@@ -303,6 +302,7 @@
       remotePlay.openFirewall = true;
     };
     git.enable = true;
+    direnv.enable = true;
     gamemode.enable = true;
   };
 
