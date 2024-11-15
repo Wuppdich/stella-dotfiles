@@ -303,7 +303,6 @@
     };
     git.enable = true;
     direnv.enable = true;
-    gamemode.enable = true;
   };
 
   # Enable the OpenSSH daemon.
