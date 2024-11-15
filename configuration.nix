@@ -238,6 +238,8 @@
     ];
   };
 
+  users.defaultUserShell = pkgs.fish;
+
   nixpkgs.config = {
     # alias for the unstable channel
     # (channel needs to be added via nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable)
@@ -284,6 +286,8 @@
     #   enable = true;
     #   enableSSHSupport = true;
     # };
+    fish.enable = true;
+    starship.enable = true;
     neovim = {
       enable = true;
       # alias vim to nvim
