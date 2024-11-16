@@ -9,10 +9,10 @@
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
-    <home-manager/nixos>
     ./allowedUnfree.nix
     ./musnix
     ./fix.nix
+    ./home-manager.nix
   ];
 
   nix = {
@@ -238,6 +238,8 @@
     ];
   };
 
+  users.defaultUserShell = pkgs.fish;
+
   nixpkgs.config = {
     # alias for the unstable channel
     # (channel needs to be added via nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable)
@@ -284,6 +286,12 @@
     #   enable = true;
     #   enableSSHSupport = true;
     # };
+    
+    fish.enable = true;
+    starship.enable = true;
+    # https://nix-community.github.io/home-manager/index.xhtml#_why_do_i_get_an_error_message_about_literal_ca_desrt_dconf_literal_or_literal_dconf_service_literal
+    # dconf.enable = true;
+    
     neovim = {
       enable = true;
       # alias vim to nvim
