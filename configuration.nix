@@ -212,7 +212,7 @@
       unstable.itch
       prismlauncher
       # CGI/CAD
-      prusa-slicer
+      unstable.prusa-slicer
       openscad-unstable
       blender
       unstable.freecad
