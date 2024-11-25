@@ -9,7 +9,7 @@
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
-    ./allowedUnfree.nix
+    # ./allowedUnfree.nix
     ./musnix
     ./fix.nix
     ./home-manager.nix
@@ -251,6 +251,33 @@
     permittedInsecurePackages = [
       "electron-25.9.0"
     ];
+    allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) [
+        # declare allowed unfree packages here
+        "nvidia-x11"
+        "nvidia-persistenced"
+        "nvidia-settings"
+        "cuda_cudart"
+        "cuda_nvcc"
+        "cuda_nvml_dev"
+        "cuda_cccl"
+        "libcublas"
+        "1password"
+        "steam"
+        "steam-original"
+        "steam-unwrapped"
+        "steam-run"
+        "modrinth-app"
+        "modrinth-app-unwrapped"
+        "vscode"
+        "blender"
+        "vcv-rack"
+        "bitwig-studio"
+        "roomeqwizard"
+        "obsidian"
+        "discord"
+        "spotify"
+        ];
   };
 
   # List packages installed in system profile. To search, run:
