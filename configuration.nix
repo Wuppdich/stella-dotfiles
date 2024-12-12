@@ -4,19 +4,6 @@
 
 { config, pkgs, ... }:
 
-# https://nixos.wiki/wiki/FAQ#How_can_I_install_a_package_from_unstable_while_remaining_on_the_stable_channel.3F
-# https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs
-# good luck future-girl
-let
-  unstable = import (builtins.fetchGit {
-    name = "nixos-unstable-2024-02-07";
-    url = "https://github.com/nixos/nixpkgs/";
-    # > git ls-remote https://github.com/nixos/nixpkgs nixos-unstable
-    ref = "refs/heads/nixos-unstable";
-    rev = "faf912b086576fd1a15fca610166c98d47bc667e";
-  })
-  { config = config.nixpkgs.config; };
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -49,17 +36,15 @@ in
     # Setup keyfile
     initrd = {
       secrets = { "/crypto_keyfile.bin" = null; };
-    # Enable swap on luks
-      luks.devices."luks-9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af" = {
-      device = "/dev/disk/by-uuid/9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af";
-      keyFile = "/crypto_keyfile.bin";
+      # Enable swap on luks
+      luks.devices."luks-75097e1b-c10e-45f7-85bd-294e80ea40d0" = {
+        device = "/dev/disk/by-uuid/75097e1b-c10e-45f7-85bd-294e80ea40d0";
+        keyFile = "/crypto_keyfile.bin";
       };
     };
-    # nct6775 enables Motherboard Sensors (like Voltages)
-    kernelModules = [ "nct6775" ];
   };
- 
-  networking.hostName = "coulon"; # Define your hostname.
+
+  networking.hostName = "lambda03"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -87,41 +72,12 @@ in
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable OpenGL
   hardware.opengl = {
-    driSupport = true;
+    enable = true;
     driSupport32Bit = true;
-  };
-
-  hardware.nvidia = {
-
-    # Modesetting is required.
-    modesetting.enable = false;
-
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    powerManagement.enable = false;
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-
-    # ensures all GPUs stay away during headless mode
-    nvidiaPersistenced = true;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = true;
-
-    # Enable the Nvidia settings menu,
-	  # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    extraPackages = with pkgs; [
+      intel-vaapi-driver
+    ];
   };
 
   services.xserver = {
@@ -130,8 +86,6 @@ in
     # Enable the GNOME Desktop Environment.
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    # Load nvidia driver for Xorg and Wayland
-    videoDrivers = ["nvidia"];
     # Configure keymap in X11
     layout = "de";
     xkbVariant = "";
@@ -181,44 +135,17 @@ in
       prusa-slicer
       openscad
       vscode
-      unstable.arduino-ide
-      (pkgs.makeDesktopItem {
-        name = "arduino-ide";
-        desktopName = "Arduino IDE";
-        exec = "arduino-ide";
-      })
-      thonny
       blender
-      gimp
-      vlc
-      geeqie
-      libreoffice
-      tor-browser
       obsidian
       heroic
       itch
       prismlauncher
       discord
-      spotify
-      # desktop entries to launch firefox with custom profiles
-      (pkgs.makeDesktopItem {
-        name = "youtube";
-        desktopName = "YouTube";
-        exec = "firefox -P youtube-machine";
-      })
-      (pkgs.makeDesktopItem {
-        name = "twitch";
-        desktopName = "Twitch";
-        exec = "firefox -P twitch-machine";
-      })
-      monero-gui
-      bisq-desktop
     ];
   };
 
   nixpkgs.config = {
     allowUnfree = true;
-    cudaSupport = true;
     # required for some package i forgor
     permittedInsecurePackages = [
       "electron-25.9.0"
@@ -228,12 +155,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    python3
-    neovim
-    git
     btop
-    wineWowPackages.waylandFull
-    winetricks
     lm_sensors
     # blend file thumbnailer
     (pkgs.writeTextFile {
@@ -247,34 +169,6 @@ in
       destination = "/share/thumbnailers/blender.thumbnailer";
     })
   ];
-
-  # fix crackling noises
-  environment.etc = {
-    "wireplumber/main.lua.d/51-disable-suspension.lua" = {
-      text = ''
-        table.insert (alsa_monitor.rules, {
-          matches = {
-            {
-              -- Matches all sources.
-              { "node.name", "matches", "alsa_input.*" },
-            },
-            {
-              -- Matches all sinks.
-              { "node.name", "matches", "alsa_output.*" },
-            },
-          },
-          apply_properties = {
-            ["session.suspend-timeout-seconds"] = 300,  -- 0 disables suspend
-          },
-        })
-      '';
-      mode = "0554";
-    };
-  };
-
-  # environment.variables = {
-  #   EDITOR = "nvim";
-  # };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -313,19 +207,15 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  fileSystems = 
-    let makeNfsFilesystem = targetDevice: {
-      device = "192.168.1.5:/volume1/" + targetDevice;
-      fsType = "nfs";
-      options = ["nfsvers=4.1" "nofail" "noauto" "x-systemd.automount" "x-systemd.idle-timeout=600" "comment=x-gvfs-hide"];
-    };
-    in {
-      "/home/alice/Bilder" = (makeNfsFilesystem "Personal Files/Pictures");
-      "/home/alice/Dokumente" = (makeNfsFilesystem "Personal Files/Documents");
-      "/home/alice/Musik" = (makeNfsFilesystem "Music");
-      "/home/alice/Videos" = (makeNfsFilesystem "Personal Files/Videos");
-      "/home/alice/Downloads" = (makeNfsFilesystem "Personal Files/Downloads");
-    };
+  # fileSystems."/home/alice/disk" = {
+  #   device = "192.168.1.5:/volume1/Personal Files/";
+  #   fsType = "nfs";
+  #   options = ["_netdev" "bg" "nfsvers=4.1" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600"];
+  # };
+
+  # Automatic upgrades
+  system.autoUpgrade.enable = false;
+  # system.autoUpgrade.allowReboot = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
