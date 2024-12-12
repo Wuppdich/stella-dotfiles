@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -87,8 +86,10 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
     # Configure keymap in X11
-    layout = "de";
-    xkbVariant = "";
+    xkb = {
+      layout = "de";
+      variant = "";
+    };
   };
 
   services.auto-cpufreq.enable = true;
@@ -140,7 +141,7 @@
       blender
       obsidian
       heroic
-      itch
+      # itch
       prismlauncher
       discord
     ];
