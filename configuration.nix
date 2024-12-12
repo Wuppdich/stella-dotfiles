@@ -7,6 +7,7 @@
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+      ./musnix
     ];
 
   # optimize store by hardlinking files
@@ -140,7 +141,7 @@
   users.users.alice = {
     isNormalUser = true;
     description = "alice";
-    extraGroups = [ "networkmanager" "wheel" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "audio" ];
     packages = with pkgs; [
       firefox
       thunderbird
@@ -231,6 +232,8 @@
     steam.enable = true;
     git.enable = true;
   };
+
+musnix.enable=true;
 
   # List services that you want to enable:
 
