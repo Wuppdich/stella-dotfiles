@@ -91,6 +91,8 @@
     xkbVariant = "";
   };
 
+  services.auto-cpufreq.enable = true;
+
   # Configure console keymap
   console.keyMap = "de";
 
