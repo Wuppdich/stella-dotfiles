@@ -153,6 +153,7 @@
       blender
       obsidian
       heroic
+      vcv-rack
       # itch
       prismlauncher
       discord
@@ -179,6 +180,7 @@
         "vscode"
         "blender"
         "roomeqwizard"
+        "vcv-rack"
         "obsidian"
         "discord"
         "spotify"
@@ -216,6 +218,7 @@
   # };
 
   programs = {
+    xwayland.enable = true;
     neovim = {
       enable = true;
       # alias vim to nvim
