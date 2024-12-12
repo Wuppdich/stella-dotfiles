@@ -155,6 +155,8 @@
       # itch
       prismlauncher
       discord
+      vulnix
+      lynis
     ];
   };
 
@@ -240,6 +242,13 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  
+  services.clamav = {
+    scanner.enable = true;
+    updater.enable = true;
+    fangfrisch.enable = true;
+    daemon.enable = true;
+  };
 
   # fileSystems."/home/alice/disk" = {
   #   device = "192.168.1.5:/volume1/Personal Files/";
