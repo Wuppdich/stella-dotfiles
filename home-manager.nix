@@ -159,5 +159,6 @@
       # do not change this without good reason! 
       home.stateVersion = "24.05";
     };
+    backupFileExtension = "backup";
   };
 }
