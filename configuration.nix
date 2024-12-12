@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -148,7 +148,27 @@
   };
 
   nixpkgs.config = {
-    allowUnfree = true;
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        # declare allowed unfree packages here
+        "nvidia-x11"
+        "nvidia-persistenced"
+        "nvidia-settings"
+        "cuda_cudart"
+        "cuda_nvcc"
+        "cuda_cccl"
+        "libcublas"
+        "1password"
+        "steam"
+        "steam-original"
+        "steam-run"
+        "vscode"
+        "blender"
+        "roomeqwizard"
+        "obsidian"
+        "discord"
+        "spotify"
+      ];
     # required for some package i forgor
     permittedInsecurePackages = [
       "electron-25.9.0"
