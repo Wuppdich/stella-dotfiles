@@ -134,6 +134,14 @@
             format = "[ $symbol$branch(:$remote_branch) ]($style)";
             style = "bold fg:black bg:bg:green";
           };
+          git_commit = {
+            format = "[\($hash$tag\) ]($style)";
+            style = "bold fg:black bg:bg:green";
+          };
+          git_state = {
+            format = "[\($state( $progress_current/$progress_total)\) ]($style)";
+            style = "bold fg:black bg:bg:green";
+          };
           git_status = {
             format = "([$all_status$ahead_behind ]($style))"; # FIXME: escaped square brackets are broken
             style = "bold fg:black bg:bg:green";
