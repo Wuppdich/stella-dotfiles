@@ -147,12 +147,12 @@
   # Configure console keymap
   console.keyMap = "de";
 
-  # Enable sound with pipewire.
   hardware = {
     pulseaudio.enable = false;
     graphics.enable32Bit = true;
   };
   security.rtkit.enable = true;
+  # Enable sound with pipewire.
   services.pipewire = {
     enable = true;
     alsa.enable = true;
