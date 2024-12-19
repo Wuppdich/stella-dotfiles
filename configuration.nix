@@ -237,8 +237,6 @@
       (texliveMedium.withPackages (ps: with ps; [ blindtext multirow roboto makecell fontaxes]))
       obsidian
       calibre
-      # crypto
-      bisq-desktop
     ];
   };
 
