@@ -94,13 +94,6 @@
     };
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      intel-vaapi-driver
-    ];
-  };
 
   services.xserver = {
     # Enable the X11 windowing system.
@@ -132,8 +125,15 @@
   console.keyMap = "de";
 
   # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware = {
+    pulseaudio.enable = false;
+    graphics = {
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        intel-vaapi-driver
+      ];
+    };
+  };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
