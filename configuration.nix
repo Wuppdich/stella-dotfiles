@@ -102,10 +102,6 @@
   };
 
   hardware = {
-    opengl = {
-      driSupport = true;
-      driSupport32Bit = true;
-    };
     nvidia = {
       # Modesetting is required.
       modesetting.enable = true;
@@ -152,8 +148,10 @@
   console.keyMap = "de";
 
   # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware = {
+    pulseaudio.enable = false;
+    graphics.enable32Bit = true;
+  };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
