@@ -1,4 +1,8 @@
 # run "sudo nix-channel --add https://github.com/XYZ nixos" to add a new channel as the default.
+# home-manager https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz
+# nixos https://channels.nixos.org/nixos-24.05
+# nixos-unstable https://nixos.org/channels/nixos-unstable
+# nix-channel --update
 
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
