@@ -102,10 +102,6 @@
   };
 
   hardware = {
-    opengl = {
-      driSupport = true;
-      driSupport32Bit = true;
-    };
     nvidia = {
       # Modesetting is required.
       modesetting.enable = true;
@@ -151,10 +147,12 @@
   # Configure console keymap
   console.keyMap = "de";
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware = {
+    pulseaudio.enable = false;
+    graphics.enable32Bit = true;
+  };
   security.rtkit.enable = true;
+  # Enable sound with pipewire.
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -237,8 +235,6 @@
       (texliveMedium.withPackages (ps: with ps; [ blindtext multirow roboto makecell fontaxes]))
       obsidian
       calibre
-      # crypto
-      bisq-desktop
     ];
   };
 
@@ -251,10 +247,6 @@
       unstable = import <nixos-unstable> {config = config.nixpkgs.config; };
     };
     cudaSupport = true;
-    # required for some package i forgor
-    permittedInsecurePackages = [
-      "electron-25.9.0"
-    ];
     allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
         # declare allowed unfree packages here
@@ -266,6 +258,11 @@
         "cuda_nvml_dev"
         "cuda_cccl"
         "libcublas"
+        "libcurand"
+        "libcusparse"
+        "libnvjitlink"
+        "libcufft"
+        "cudnn"
         "1password"
         "steam"
         "steam-original"
