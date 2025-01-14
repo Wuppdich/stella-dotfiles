@@ -183,10 +183,11 @@
     # "wheel" for sudo
     # "dialout" for parallel protocols (moisture sensor)
     # "audio" for realtime audio
-    extraGroups = [ "networkmanager" "wheel" "dialout" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "audio" "wireshark" ];
     packages = with pkgs; [
       # internet
       firefox
+      wireshark
       # desktop entries to launch firefox with custom profiles
       (pkgs.makeDesktopItem {
         name = "youtube";
@@ -339,6 +340,7 @@
     };
     git.enable = true;
     direnv.enable = true;
+    wireshark.enable = true;
   };
 
   # Enable the OpenSSH daemon.
