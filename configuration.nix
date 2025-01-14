@@ -183,7 +183,7 @@
     # "wheel" for sudo
     # "dialout" for parallel protocols (moisture sensor)
     # "audio" for realtime audio
-    extraGroups = [ "networkmanager" "wheel" "dialout" "audio" "wireshark" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "audio" "wireshark" "docker" ];
     packages = with pkgs; [
       # internet
       firefox
@@ -342,6 +342,8 @@
     direnv.enable = true;
     wireshark.enable = true;
   };
+
+  virtualisation.docker.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
