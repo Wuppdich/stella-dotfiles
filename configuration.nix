@@ -17,32 +17,10 @@
     ./musnix
     ./fix.nix
     ./home-manager.nix
+    ./nix.nix
+    ./locale.nix
+    ./nvidia.nix
   ];
-
-  nix = {
-    optimise = {
-      automatic = true;
-      dates = ["daily"];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      persistent = true;
-      options = "--delete-older-than 30d";
-    };
-    settings = {
-      # additional binary caches to use
-      substituters = [
-        "https://cuda-maintainers.cachix.org"
-        "https://nix-community.cachix.org"
-      ];
-      trusted-public-keys = [
-        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-      experimental-features = "nix-command flakes";
-    };
-  };
 
   # Bootloader.
   boot = {
@@ -65,64 +43,9 @@
  
   networking = {
     hostName = "coulon"; # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-    
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
 
     # Enable networking
     networkmanager.enable = true;
-  };
-
-
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "de_DE.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "de_DE.UTF-8";
-      LC_IDENTIFICATION = "de_DE.UTF-8";
-      LC_MEASUREMENT = "de_DE.UTF-8";
-      LC_MONETARY = "de_DE.UTF-8";
-      LC_NAME = "de_DE.UTF-8";
-      LC_NUMERIC = "de_DE.UTF-8";
-      LC_PAPER = "de_DE.UTF-8";
-      LC_TELEPHONE = "de_DE.UTF-8";
-      LC_TIME = "de_DE.UTF-8";
-    };
-  };
-
-  hardware = {
-    nvidia = {
-      # Modesetting is required.
-      modesetting.enable = true;
-      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-      powerManagement.enable = true;
-      # ensures all GPUs stay awake during headless mode
-      nvidiaPersistenced = true;
-      # Use the NVidia open source kernel module (not to be confused with the
-      # independent third-party "nouveau" open source driver).
-      # Support is limited to the Turing and later architectures. Full list of 
-      # supported GPUs is at: 
-      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-      # Only available from driver 515.43.04+
-      # Currently alpha-quality/buggy, so false is currently the recommended setting.
-      open = true;
-      # Enable the Nvidia settings menu,
-      # accessible via `nvidia-settings`.
-      nvidiaSettings = true;
-      # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
   };
 
   services = {
@@ -241,47 +164,6 @@
 
   users.defaultUserShell = pkgs.fish;
 
-  nixpkgs.config = {
-    # alias for the unstable channel
-    # (channel needs to be added via nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable)
-    packageOverrides = pkgs: {
-      unstable = import <nixos-unstable> {config = config.nixpkgs.config; };
-    };
-    cudaSupport = true;
-    allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [
-        # declare allowed unfree packages here
-        "nvidia-x11"
-        "nvidia-persistenced"
-        "nvidia-settings"
-        "cuda_cudart"
-        "cuda_nvcc"
-        "cuda_nvml_dev"
-        "cuda_cccl"
-        "libcublas"
-        "libcurand"
-        "libcusparse"
-        "libnvjitlink"
-        "libcufft"
-        "cudnn"
-        "1password"
-        "steam"
-        "steam-original"
-        "steam-unwrapped"
-        "steam-run"
-        "modrinth-app"
-        "modrinth-app-unwrapped"
-        "vscode"
-        "blender"
-        "vcv-rack"
-        "bitwig-studio"
-        "roomeqwizard"
-        "obsidian"
-        "discord"
-        "spotify"
-        ];
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -345,9 +227,6 @@
 
   virtualisation.docker.enable = true;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
   # nfs ohne kerberos ist nicht transparent. Alle Dateien werden aktuell auf dem Server
   # dem "admin"-Nutzer zugeschrieben. 
   fileSystems = 
@@ -363,10 +242,6 @@
       "/home/alice/Videos" = (makeNfsFilesystem "Personal Files/Videos");
       "/home/alice/Downloads" = (makeNfsFilesystem "Personal Files/Downloads");
     };
-
-  # The nix-daemon's scheduling priority is set lowest to lessen the impact on system performance
-  # during auto-Upgrades
-  nix.daemonIOSchedPriority = 7; # 0 is highest, 7 is lowest
 
   system = {
     autoUpgrade = {
