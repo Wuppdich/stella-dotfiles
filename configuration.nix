@@ -94,13 +94,6 @@
     };
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      intel-vaapi-driver
-    ];
-  };
 
   services.xserver = {
     # Enable the X11 windowing system.
@@ -131,10 +124,17 @@
   # Configure console keymap
   console.keyMap = "de";
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware = {
+    pulseaudio.enable = false;
+    graphics = {
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        intel-vaapi-driver
+      ];
+    };
+  };
   security.rtkit.enable = true;
+  # Enable sound with pipewire.
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -197,10 +197,6 @@
     packageOverrides = pkgs: {
       unstable = import <nixos-unstable> {config = config.nixpkgs.config; };
     };
-    # required for some package i forgor
-    permittedInsecurePackages = [
-      "electron-25.9.0"
-    ];
     allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
           # declare allowed unfree packages here
