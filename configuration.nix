@@ -197,10 +197,6 @@
     packageOverrides = pkgs: {
       unstable = import <nixos-unstable> {config = config.nixpkgs.config; };
     };
-    # required for some package i forgor
-    permittedInsecurePackages = [
-      "electron-25.9.0"
-    ];
     allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
           # declare allowed unfree packages here
