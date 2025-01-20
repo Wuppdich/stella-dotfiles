@@ -181,6 +181,7 @@
       heroic
       vcv-rack
       unstable.itch
+      unstable.freecad
       prismlauncher
       discord
       vulnix
