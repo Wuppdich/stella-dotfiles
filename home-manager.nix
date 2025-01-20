@@ -102,7 +102,6 @@
             "[](fg:blue bg:purple)$time[](purple) "
             "$line_break" # new line
             "$jobs"
-            "$battery"
             "$status"
             "$os"
             "$container"
