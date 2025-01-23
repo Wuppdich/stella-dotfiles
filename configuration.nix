@@ -63,8 +63,6 @@
         variant = "";
       };
     };
-    # Enable CUPS to print documents.
-    printing.enable = true;
   };
 
   # Configure console keymap
