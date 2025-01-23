@@ -154,7 +154,6 @@
       roomeqwizard
       # office
       libreoffice
-      (texliveMedium.withPackages (ps: with ps; [ blindtext multirow roboto makecell fontaxes]))
       obsidian
       calibre
     ];
