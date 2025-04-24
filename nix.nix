@@ -65,6 +65,7 @@
         "obsidian"
         "discord"
         "spotify"
+        "libnpp"
         ];
   };
 }
