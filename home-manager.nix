@@ -165,6 +165,14 @@
               style = "bold fg:black bg:purple";
               time_format = "%R";
               format = "[ 󰥔 $time]($style)";
+            };
+          };
+        };
+        dircolors = {
+          enable = true;
+          settings = {
+            OTHER_WRITABLE = "37;42";
+            STICKY = "30;44";
           };
         };
       };
