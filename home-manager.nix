@@ -12,6 +12,9 @@
     useUserPackages = true;
     users.alice = {pkgs, ...}: {
       programs = {
+        kitty = {
+          enable = true;
+        };
         fish = {
           enable = true;
           shellInit = ''
