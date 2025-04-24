@@ -170,6 +170,11 @@
       };
 
       home = {
+        shellAliases = {
+          ls = "ls --color=auto --hyperlink=auto";
+          ll = "ls -lAh --color=auto --hyperlink=auto";
+          less = "less --use-color";
+        };
         # do not change this without good reason! 
         stateVersion = "24.05";
       };
