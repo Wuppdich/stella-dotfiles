@@ -72,6 +72,12 @@
     #media-session.enable = true;
   };
 
+  # services.openssh.enable = true;
+
+  services.k3s.enable = true;
+  services.k3s.role = "server";
+  services.usbmuxd.enable = true; # iPhone
+
   musnix.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).

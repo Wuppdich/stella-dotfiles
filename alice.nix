@@ -31,6 +31,7 @@
       vscode
       arduino-ide
       thonny
+      kubernetes-helm
       # gaming
       steam
       lutris
