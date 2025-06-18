@@ -69,6 +69,8 @@
         "discord"
         "spotify"
         "libnpp"
+        "bitwig-studio-unwrapped"
+        "cuda_nvrtc"
         ];
   };
 }
