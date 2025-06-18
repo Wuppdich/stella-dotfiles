@@ -60,6 +60,7 @@
       libreoffice
       obsidian
       calibre
+      bisq2
     ];
   };
 }
