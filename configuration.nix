@@ -95,6 +95,8 @@
   environment.systemPackages = with pkgs; [
     # libs/envs/daemons
     wineWowPackages.waylandFull
+    libimobiledevice  # iPhone
+    ifuse # iPhone
     winetricks
     lm_sensors
     # tools
