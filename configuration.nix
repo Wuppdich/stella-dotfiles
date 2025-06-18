@@ -13,7 +13,6 @@
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
-    # ./allowedUnfree.nix
     ./musnix
     ./fix.nix
     ./nix.nix
@@ -57,7 +56,9 @@
     pulseaudio.enable = false;
     graphics.enable32Bit = true;
   };
+
   security.rtkit.enable = true;
+
   # Enable sound with pipewire.
   services.pipewire = {
     enable = true;
@@ -79,9 +80,6 @@
   services.usbmuxd.enable = true; # iPhone
 
   musnix.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # install specific fonts
   fonts.packages = with pkgs; [
