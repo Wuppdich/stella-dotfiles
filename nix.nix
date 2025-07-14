@@ -34,9 +34,9 @@
     packageOverrides = pkgs: {
       unstable = import <nixos-unstable> {config = config.nixpkgs.config; };
     };
-    permittedInsecurePackages = [
-      "electron-33.4.11"
-    ];
+    # permittedInsecurePackages = [
+    #   "electron-33.4.11"
+    # ];
     allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
         # declare allowed unfree packages here
@@ -69,6 +69,8 @@
         "discord"
         "spotify"
         "libnpp"
+        "bitwig-studio-unwrapped"
+        "cuda_nvrtc"
         ];
   };
 }
