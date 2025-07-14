@@ -113,17 +113,6 @@
   };
 
   # managed by gnome power daemon :TODO fix this
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-      turbo = "never";
-    };
-    charger = {
-      governor = "performance";
-      turbo = "auto";
-    };
-  };
 
   # Configure console keymap
   console.keyMap = "de";
