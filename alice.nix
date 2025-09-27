@@ -46,6 +46,7 @@
       blender
       unstable.freecad
       gimp
+      darktable
       vlc
       geeqie
       # audio
