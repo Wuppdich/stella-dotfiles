@@ -71,6 +71,7 @@
         "libnpp"
         "bitwig-studio-unwrapped"
         "cuda_nvrtc"
+        "davinci-resolve"
         ];
   };
 }

@@ -50,6 +50,7 @@
       vlc
       geeqie
       kicad
+      unstable.davinci-resolve
       # audio
       spotify
       rhythmbox
