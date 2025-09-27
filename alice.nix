@@ -49,6 +49,7 @@
       darktable
       vlc
       geeqie
+      kicad
       # audio
       spotify
       rhythmbox
