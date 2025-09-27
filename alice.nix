@@ -63,6 +63,11 @@
       roomeqwizard
       # office
       libreoffice
+      hunspellDicts.de_DE
+      hunspellDicts.en_US
+      hunspellDicts.en_GB-ize
+      hyphenDicts.de_DE
+      hyphenDicts.en_US
       obsidian
       calibre
       bisq2
