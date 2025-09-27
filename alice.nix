@@ -51,6 +51,7 @@
       geeqie
       kicad
       unstable.davinci-resolve
+      kdePackages.kdenlive
       # audio
       spotify
       rhythmbox
