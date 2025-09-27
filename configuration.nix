@@ -173,7 +173,7 @@
 
   system = {
     autoUpgrade = {
-      enable = false;
+      enable = true;
       operation = "boot";
     };
     # This value determines the NixOS release from which the default
