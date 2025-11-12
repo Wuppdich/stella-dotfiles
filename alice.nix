@@ -55,9 +55,9 @@
       # audio
       spotify
       rhythmbox
-      vcv-rack
+      unstable.vcv-rack
       ardour
-      bitwig-studio
+      unstable.bitwig-studio
       audacity
       plugdata
       roomeqwizard
