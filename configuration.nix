@@ -21,6 +21,7 @@
     ./alice.nix
     ./home-manager.nix
     ./gdm.nix
+    ./nvf.nix
   ];
 
   # Bootloader.
@@ -131,13 +132,6 @@
     # https://nix-community.github.io/home-manager/index.xhtml#_why_do_i_get_an_error_message_about_literal_ca_desrt_dconf_literal_or_literal_dconf_service_literal
     # dconf.enable = true;
     
-    neovim = {
-      enable = true;
-      # alias vim to nvim
-      vimAlias = true;
-      # set nvim as default
-      defaultEditor = true;
-    };
     _1password-gui = {
       enable = true;
       # allow unlocking with user password
