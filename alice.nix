@@ -29,6 +29,7 @@
       signal-desktop
       # programmierung
       kitty
+      nix-output-monitor
       vscode
       arduino-ide
       thonny
