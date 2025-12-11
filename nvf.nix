@@ -14,7 +14,26 @@ in {
   # Once the module is imported, you may use `programs.nvf` as exposed by the
   # NixOS module.
   programs = {
-    nvf.enable = true;
+    nvf = {
+      enable = true;
+      settings.vim = {
+        languages = {
+          bash.enable = true;
+          css.enable = true;
+          haskell.enable = true;
+          helm.enable = true;
+          html.enable = true;
+          json.enable = true;
+          lua.enable = true;
+          markdown.enable = true;
+          nix.enable = true;
+          python.enable = true;
+          rust.enable = true;
+          sql.enable = true;
+          yaml.enable = true;
+        };
+      };
+    };
     neovim = {
         enable = true;
         # alias vim to nvim
@@ -23,4 +42,7 @@ in {
         defaultEditor = true;
         };
   };
+  environment.systemPackages = with pkgs; [
+    ripgrep
+  ];
 }

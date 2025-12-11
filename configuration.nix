@@ -101,7 +101,6 @@
     winetricks
     lm_sensors
     # tools
-    neovim
     git
     btop
     # settings
