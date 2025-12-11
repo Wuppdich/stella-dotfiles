@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-    hardware = {
+  hardware = {
     nvidia = {
       # Modesetting is required.
       modesetting.enable = true;
