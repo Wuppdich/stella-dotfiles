@@ -37,6 +37,9 @@
     # permittedInsecurePackages = [
     #   "electron-33.4.11"
     # ];
+
+    # join UnfreePredicate with pkgs._cuda.lib.allowUnfreeCudaPredicate somehow
+    # https://nixos.org/manual/nixpkgs/unstable/#cuda-configuring-nixpkgs-for-cuda
     allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
         # declare allowed unfree packages here

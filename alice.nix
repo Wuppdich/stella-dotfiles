@@ -44,7 +44,9 @@
       # CGI/CAD
       unstable.prusa-slicer
       openscad-unstable
-      blender
+      (blender.override {
+        cudaSupport = true;
+      })
       unstable.freecad
       gimp
       darktable
