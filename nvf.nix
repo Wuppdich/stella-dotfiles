@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 let
   nvf = import (builtins.fetchTarball {
-    url = "https://github.com/notashelf/nvf/archive/da5c91424e6d5028c7cfd171833ac7a71f98cbfc.tar.gz";
+    url = "https://github.com/notashelf/nvf/archive/cd1317aff7c9db7a8e1589c6119b7503f9036d24.tar.gz";
     # Optionally, you can add 'sha256' for verification and caching
-    sha256 = "sha256:0p2qywnv4x89j5qayb132wapapzz846f7lgng9pkj33lgk27x3pl";
+    sha256 = "sha256:0043z1b0kyacwbc4f6apf5na2hvj6vvrppvij10k6xsmahw6l9f8";
   });
 in {
   imports = [
@@ -23,7 +23,6 @@ in {
           haskell.enable = true;
           helm.enable = true;
           html.enable = true;
-          json.enable = true;
           lua.enable = true;
           markdown.enable = true;
           nix.enable = true;
