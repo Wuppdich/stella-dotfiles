@@ -14,11 +14,11 @@
     settings = {
       # additional binary caches to use
       substituters = [
-        "https://cuda-maintainers.cachix.org"
+        "https://cache.nixos-cuda.org"
         "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
-        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
       experimental-features = "nix-command flakes";
@@ -37,22 +37,40 @@
     # permittedInsecurePackages = [
     #   "electron-33.4.11"
     # ];
+
+    # join UnfreePredicate with pkgs._cuda.lib.allowUnfreeCudaPredicate somehow
+    # https://nixos.org/manual/nixpkgs/unstable/#cuda-configuring-nixpkgs-for-cuda
     allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
         # declare allowed unfree packages here
         "nvidia-x11"
         "nvidia-persistenced"
         "nvidia-settings"
+        "cuda_cccl"
         "cuda_cudart"
+        "cuda-merged"
+        "cuda_cuobjdump"
+        "cuda_cupti"
+        "cuda_cuxxfilt"
+        "cuda_gdb"
+        "cuda_nvdisasm"
         "cuda_nvcc"
         "cuda_nvml_dev"
-        "cuda_cccl"
+        "cuda_nvprune"
+        "cuda_nvtx"
+        "cuda_nvrtc"
+        "cuda_profiler_api"
+        "cuda_sanitizer_api"
+        "cudnn"
         "libcublas"
+        "libcufft"
+        "libcusolver"
         "libcurand"
         "libcusparse"
         "libnvjitlink"
-        "libcufft"
-        "cudnn"
+        "libnpp"
+        "libcufile"
+        "libcusparse_lt"
         "1password"
         "steam"
         "steam-original"
@@ -68,9 +86,7 @@
         "obsidian"
         "discord"
         "spotify"
-        "libnpp"
         "bitwig-studio-unwrapped"
-        "cuda_nvrtc"
         "davinci-resolve"
         ];
   };

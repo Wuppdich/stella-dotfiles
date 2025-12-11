@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-    hardware = {
+  hardware = {
     nvidia = {
       # Modesetting is required.
       modesetting.enable = true;
@@ -23,6 +23,9 @@
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
-
-  nixpkgs.config.cudaSupport = true;
+  nixpkgs.config = {
+    # see https://en.wikipedia.org/wiki/CUDA#GPUs_supported for RTX 3080
+    cudaCapabilities = [ "8.6" ];
+    # cudaForwardCompat = true; # see if this even does anything
+  };
 }
