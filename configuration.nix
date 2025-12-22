@@ -87,6 +87,8 @@
   # install specific fonts
   fonts.packages = with pkgs; [
     (google-fonts.override { fonts = [ "Pathway Gothic One" "Roboto" ]; })
+    nerd-fonts.dejavu-sans-mono
+    nerd-fonts.symbols-only
   ];
 
   users.defaultUserShell = pkgs.fish;

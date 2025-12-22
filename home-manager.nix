@@ -3,8 +3,6 @@
   imports = [
   <home-manager/nixos>
   ];
-  fonts.packages = with pkgs; [
-  ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts) ;
   # home manager config
   home-manager = {
     useGlobalPkgs = true;
