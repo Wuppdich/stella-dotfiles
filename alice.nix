@@ -25,7 +25,7 @@
       })
       thunderbird
       tor-browser
-      discord
+      vesktop
       signal-desktop
       # programmierung
       kitty
