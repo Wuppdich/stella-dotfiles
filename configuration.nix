@@ -147,6 +147,7 @@
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # nfs ohne kerberos ist nicht transparent. Alle Dateien werden aktuell auf dem Server
   # dem "admin"-Nutzer zugeschrieben. 
