@@ -39,7 +39,7 @@
       lutris
       ludusavi
       heroic
-      unstable.itch
+      itch
       prismlauncher
       # CGI/CAD
       unstable.prusa-slicer
@@ -47,9 +47,9 @@
       (blender.override {
         cudaSupport = true;
       })
-      unstable.freecad
+      freecad
       gimp
-      darktable
+      unstable.darktable
       vlc
       geeqie
       kicad
