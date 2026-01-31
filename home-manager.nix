@@ -183,6 +183,8 @@
         # do not change this without good reason! 
         stateVersion = "24.05";
       };
+
+      fonts.fontconfig.enable = true;
     };
     backupFileExtension = "backup";
   };
