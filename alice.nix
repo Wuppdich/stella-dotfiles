@@ -31,9 +31,6 @@
       kitty
       nix-output-monitor
       vscode
-      arduino-ide
-      thonny
-      kubernetes-helm
       # gaming
       steam
       lutris
@@ -43,7 +40,6 @@
       prismlauncher
       # CGI/CAD
       unstable.prusa-slicer
-      openscad-unstable
       (blender.override {
         cudaSupport = true;
       })
@@ -51,7 +47,6 @@
       gimp
       unstable.darktable
       vlc
-      geeqie
       kicad
       unstable.davinci-resolve
       kdePackages.kdenlive
@@ -72,7 +67,6 @@
       hyphenDicts.de_DE
       hyphenDicts.en_US
       obsidian
-      calibre
       bisq2
     ];
   };
