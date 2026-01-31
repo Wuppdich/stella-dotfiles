@@ -85,6 +85,7 @@
   musnix.enable = true;
 
   fonts.fontDir.enable = true;
+  fonts.enableDefaultPackages = true;
   # install specific fonts
   fonts.packages = with pkgs; [
     (google-fonts.override { fonts = [ "Pathway Gothic One" "Roboto" ]; })
