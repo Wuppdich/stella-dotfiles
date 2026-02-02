@@ -22,6 +22,7 @@
     ./home-manager.nix
     ./gdm.nix
     ./nvf.nix
+    ./lix.nix
   ];
 
   # Bootloader.
