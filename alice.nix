@@ -27,6 +27,7 @@
       tor-browser
       vesktop
       signal-desktop
+      tuba
       # programmierung
       kitty
       nix-output-monitor
