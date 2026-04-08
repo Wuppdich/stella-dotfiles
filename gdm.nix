@@ -1,11 +1,16 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   services = {
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
       # Load nvidia driver for Xorg and Wayland
-      videoDrivers = ["nvidia"];
+      videoDrivers = [ "nvidia" ];
       # Configure keymap in X11
       xkb = {
         layout = "de";

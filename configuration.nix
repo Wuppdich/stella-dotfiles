@@ -8,7 +8,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -33,7 +38,9 @@
     };
     # Setup keyfile
     initrd = {
-      secrets = { "/crypto_keyfile.bin" = null; };
+      secrets = {
+        "/crypto_keyfile.bin" = null;
+      };
       # Enable swap on luks
       luks.devices."luks-9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af" = {
         device = "/dev/disk/by-uuid/9c5a0fd5-c5a3-4376-a9ca-abd0e7a6a9af";
@@ -43,7 +50,7 @@
     # nct6775 enables Motherboard Sensors (like Voltages)
     kernelModules = [ "nct6775" ];
   };
- 
+
   networking = {
     hostName = "coulon"; # Define your hostname.
 
@@ -62,7 +69,7 @@
 
   # Enable sound with pipewire.
   services = {
-      pipewire = {
+    pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
@@ -87,7 +94,12 @@
   fonts.enableDefaultPackages = true;
   # install specific fonts
   fonts.packages = with pkgs; [
-    (google-fonts.override { fonts = [ "Pathway Gothic One" "Roboto" ]; })
+    (google-fonts.override {
+      fonts = [
+        "Pathway Gothic One"
+        "Roboto"
+      ];
+    })
     nerd-fonts.dejavu-sans-mono
     nerd-fonts.symbols-only
   ];
@@ -99,7 +111,7 @@
   environment.systemPackages = with pkgs; [
     # libs/envs/daemons
     wineWowPackages.waylandFull
-    libimobiledevice  # iPhone
+    libimobiledevice # iPhone
     ifuse # iPhone
     winetricks
     lm_sensors
@@ -128,12 +140,12 @@
     #   enable = true;
     #   enableSSHSupport = true;
     # };
-    
+
     fish.enable = true;
     starship.enable = true;
     # https://nix-community.github.io/home-manager/index.xhtml#_why_do_i_get_an_error_message_about_literal_ca_desrt_dconf_literal_or_literal_dconf_service_literal
     # dconf.enable = true;
-    
+
     _1password-gui = {
       enable = true;
       # allow unlocking with user password
@@ -153,14 +165,23 @@
   virtualisation.libvirtd.enable = true;
 
   # nfs ohne kerberos ist nicht transparent. Alle Dateien werden aktuell auf dem Server
-  # dem "admin"-Nutzer zugeschrieben. 
-  fileSystems = 
-    let makeNfsFilesystem = targetDevice: {
-      device = "fragment-1:/volume1/" + targetDevice;
-      fsType = "nfs";
-      options = ["nfsvers=4.1" "nofail" "noauto" "x-systemd.automount" "x-systemd.idle-timeout=600" "comment=x-gvfs-hide"];
-    };
-    in {
+  # dem "admin"-Nutzer zugeschrieben.
+  fileSystems =
+    let
+      makeNfsFilesystem = targetDevice: {
+        device = "fragment-1:/volume1/" + targetDevice;
+        fsType = "nfs";
+        options = [
+          "nfsvers=4.1"
+          "nofail"
+          "noauto"
+          "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
+          "comment=x-gvfs-hide"
+        ];
+      };
+    in
+    {
       "/home/alice/Bilder" = (makeNfsFilesystem "Personal Files/Pictures");
       "/home/alice/Dokumente" = (makeNfsFilesystem "Personal Files/Documents");
       "/home/alice/Musik" = (makeNfsFilesystem "Music");

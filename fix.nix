@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   environment = {
     # "DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau."

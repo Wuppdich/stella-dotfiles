@@ -1,9 +1,14 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   nix = {
     optimise = {
       automatic = true;
-      dates = ["daily"];
+      dates = [ "daily" ];
     };
     gc = {
       automatic = true;
@@ -32,7 +37,7 @@
     # alias for the unstable channel
     # (channel needs to be added via nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable)
     packageOverrides = pkgs: {
-      unstable = import <nixos-unstable> {config = config.nixpkgs.config; };
+      unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
     };
     # permittedInsecurePackages = [
     #   "electron-33.4.11"
@@ -40,8 +45,9 @@
 
     # join UnfreePredicate with pkgs._cuda.lib.allowUnfreeCudaPredicate somehow
     # https://nixos.org/manual/nixpkgs/unstable/#cuda-configuring-nixpkgs-for-cuda
-    allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [
+    allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
         # declare allowed unfree packages here
         "nvidia-x11"
         "nvidia-persistenced"
@@ -88,6 +94,6 @@
         "spotify"
         "bitwig-studio-unwrapped"
         "davinci-resolve"
-        ];
+      ];
   };
 }

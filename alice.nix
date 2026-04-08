@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alice = {
@@ -7,7 +12,14 @@
     # "wheel" for sudo
     # "dialout" for parallel protocols (moisture sensor)
     # "audio" for realtime audio
-    extraGroups = [ "networkmanager" "wheel" "dialout" "audio" "wireshark" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "dialout"
+      "audio"
+      "wireshark"
+      "docker"
+    ];
     packages = with pkgs; [
       # internet
       firefox
