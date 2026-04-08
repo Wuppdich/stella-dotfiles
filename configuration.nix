@@ -79,8 +79,6 @@
 
   # services.openssh.enable = true;
 
-  services.k3s.enable = true;
-  services.k3s.role = "server";
   services.usbmuxd.enable = true; # iPhone
 
   musnix.enable = true;
