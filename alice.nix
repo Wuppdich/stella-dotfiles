@@ -47,7 +47,17 @@
         cudaSupport = true;
       })
       freecad
-      gimp
+      (gimp-with-plugins.override {
+        plugins = with gimpPlugins; [
+          fourier
+          farbfeld
+          texturize
+          lqrPlugin
+          gimplensfun
+          resynthesizer
+          waveletSharpen
+        ];
+      })
       unstable.darktable
       vlc
       kicad
