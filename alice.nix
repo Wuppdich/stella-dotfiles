@@ -73,10 +73,28 @@
       plugdata
       roomeqwizard
       # office
-      libreoffice
-      hunspellDicts.de_DE
-      hunspellDicts.en_US
-      hunspellDicts.en_GB-ize
+      (libreoffice.override {
+        unwrapped = (
+          libreoffice-still.unwrapped.override {
+            langs = [
+              "de"
+              "en-GB"
+              "en-US"
+            ];
+            hunspell = (
+              hunspell.override {
+                hunspellDicts = with hunspellDicts; [
+                  de_DE
+                  en_US
+                  en_GB-ize
+                ];
+              }
+            );
+            withHelp = false;
+            withJava = false;
+          }
+        );
+      })
       hyphenDicts.de_DE
       hyphenDicts.en_US
       obsidian
