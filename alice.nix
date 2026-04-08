@@ -32,6 +32,8 @@
       kitty
       nix-output-monitor
       vscode
+      nil
+      nixfmt
       # gaming
       steam
       lutris
