@@ -6,8 +6,6 @@
 }:
 {
   environment = {
-    # "DRM kernel driver 'nvidia-drm' in use. NVK requires nouveau."
-    sessionVariables.VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
     # fix crackling noises
     etc = {
       "wireplumber/main.lua.d/51-disable-suspension.lua" = {
