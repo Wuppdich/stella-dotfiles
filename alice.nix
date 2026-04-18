@@ -70,17 +70,7 @@
         destination = "/share/thumbnailers/blender.thumbnailer";
       })
       freecad
-      (gimp-with-plugins.override {
-        plugins = with gimpPlugins; [
-          fourier
-          farbfeld
-          texturize
-          lqrPlugin
-          gimplensfun
-          resynthesizer
-          waveletSharpen
-        ];
-      })
+      gimp
       unstable.darktable
       vlc
       kicad
