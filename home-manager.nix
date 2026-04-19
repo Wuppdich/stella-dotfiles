@@ -5,9 +5,6 @@
   ...
 }:
 {
-  imports = [
-    <home-manager/nixos>
-  ];
   # home manager config
   home-manager = {
     useGlobalPkgs = true;

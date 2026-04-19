@@ -11,14 +11,29 @@
 {
   config,
   pkgs,
-  lib,
+  inputs,
+  pkgsUnstable,
   ...
 }:
 {
+  _module.args.pkgsUnstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs.stdenv.hostPlatform) system;
+    inherit (config.nixpkgs) config;
+  };
+
+  sops = {
+    # required key file
+    age.keyFile = "/home/alice/.config/sops/age/keys.txt";
+    defaultSopsFile = ./secrets.yaml;
+    # this will instantiate the secret in /run/secrets, making it available after evaluation
+    secrets."coulon/binary-cache/private" = {
+      group = "wheel";
+      mode = "444";
+    };
+  };
+
   imports = [
     # Include the results of the hardware scan.
-    /etc/nixos/hardware-configuration.nix
-    ./musnix
     ./fix.nix
     ./nix.nix
     ./locale.nix
@@ -36,7 +51,7 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    # Setup keyfile
+    # Setup keyfile (TODO: do this with sops?)
     initrd = {
       secrets = {
         "/crypto_keyfile.bin" = null;

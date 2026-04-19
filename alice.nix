@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  pkgsUnstable,
   ...
 }:
 {
@@ -46,6 +47,8 @@
       vscode
       nil
       nixfmt
+      sops
+      age
       # gaming
       steam
       lutris
@@ -54,7 +57,7 @@
       itch
       prismlauncher
       # CGI/CAD
-      unstable.prusa-slicer
+      pkgsUnstable.prusa-slicer
       (blender.override {
         cudaSupport = true;
       })
@@ -71,17 +74,17 @@
       })
       freecad
       gimp
-      unstable.darktable
+      pkgsUnstable.darktable
       vlc
       kicad
-      unstable.davinci-resolve
+      pkgsUnstable.davinci-resolve
       kdePackages.kdenlive
       # audio
       spotify
       rhythmbox
-      unstable.vcv-rack
+      pkgsUnstable.vcv-rack
       ardour
-      unstable.bitwig-studio
+      pkgsUnstable.bitwig-studio
       audacity
       plugdata
       roomeqwizard

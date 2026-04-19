@@ -5,15 +5,13 @@
   ...
 }:
 let
-  nvf = import (
-    builtins.fetchTarball {
-      url = "https://github.com/notashelf/nvf/archive/cd1317aff7c9db7a8e1589c6119b7503f9036d24.tar.gz";
-      # Optionally, you can add 'sha256' for verification and caching
-      sha256 = "sha256:0043z1b0kyacwbc4f6apf5na2hvj6vvrppvij10k6xsmahw6l9f8";
-    }
-  );
-in
-{
+  # TODO: move this to flakes?
+  nvf = import (builtins.fetchTarball {
+    url = "https://github.com/notashelf/nvf/archive/cd1317aff7c9db7a8e1589c6119b7503f9036d24.tar.gz";
+    # Optionally, you can add 'sha256' for verification and caching
+    sha256 = "sha256:0043z1b0kyacwbc4f6apf5na2hvj6vvrppvij10k6xsmahw6l9f8";
+  });
+in {
   imports = [
     # Import the NixOS module from your fetched input
     nvf.nixosModules.nvf

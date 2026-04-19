@@ -25,8 +25,12 @@
       trusted-public-keys = [
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        (builtins.readFile ./coulon_nix_key.pub)
       ];
       experimental-features = "nix-command flakes";
+      # this option is not in search, but documented here:
+      # https://nix.dev/manual/nix/2.34/command-ref/conf-file.html#conf-secret-key-files
+      secret-key-files = [ config.sops.secrets."coulon/binary-cache/private".path ];
     };
     # The nix-daemon's scheduling priority is set lowest to lessen the impact on system performance
     # during auto-Upgrades
@@ -34,14 +38,6 @@
   };
 
   nixpkgs.config = {
-    # alias for the unstable channel
-    # (channel needs to be added via nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable)
-    packageOverrides = pkgs: {
-      unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
-    };
-    # permittedInsecurePackages = [
-    #   "electron-33.4.11"
-    # ];
 
     # join UnfreePredicate with pkgs._cuda.lib.allowUnfreeCudaPredicate somehow
     # https://nixos.org/manual/nixpkgs/unstable/#cuda-configuring-nixpkgs-for-cuda
@@ -87,7 +83,7 @@
         "vscode"
         "blender"
         "vcv-rack"
-        "bitwig-studio"
+        "bitwig-studio6"
         "roomeqwizard"
         "obsidian"
         "discord"
