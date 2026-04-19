@@ -182,6 +182,7 @@
       enable = true;
       operation = "boot";
       flags = [ "--max-jobs 1" ];
+      runGarbageCollection = true;
     };
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
