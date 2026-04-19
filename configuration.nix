@@ -82,11 +82,15 @@
       #media-session.enable = true;
     };
     pulseaudio.enable = false;
+    openssh = {
+      enable = false;
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+      };
+    };
+    usbmuxd.enable = true; # iPhone
   };
-
-  # services.openssh.enable = true;
-
-  services.usbmuxd.enable = true; # iPhone
 
   musnix.enable = true;
 
