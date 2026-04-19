@@ -44,6 +44,16 @@
           specialArgs = { inherit inputs; };
         };
 
+        foxglove = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            disko.nixosModules.disko
+            ./foxglove/configuration.nix
+            ./foxglove/hardware-configuration.nix
+            sops-nix.nixosModules.sops
+          ];
+        };
+
       };
     };
 }
