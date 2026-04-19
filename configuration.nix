@@ -118,6 +118,7 @@
     # tools
     git
     btop
+    hyfetch
   ];
 
   programs = {
