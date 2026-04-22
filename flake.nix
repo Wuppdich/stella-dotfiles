@@ -34,9 +34,8 @@
         coulon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            ./machines/coulon
             disko.nixosModules.disko
-            ./configuration.nix
-            ./hardware-configuration.nix
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
@@ -47,9 +46,8 @@
         foxglove = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            ./machines/foxglove
             disko.nixosModules.disko
-            ./foxglove/configuration.nix
-            ./foxglove/hardware-configuration.nix
             sops-nix.nixosModules.sops
           ];
         };

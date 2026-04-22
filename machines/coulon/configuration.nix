@@ -9,41 +9,15 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 {
-  config,
   pkgs,
-  inputs,
-  pkgsUnstable,
   ...
 }:
 {
-  _module.args.pkgsUnstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs.stdenv.hostPlatform) system;
-    inherit (config.nixpkgs) config;
+  # this will instantiate the secret in /run/secrets, making it available after evaluation
+  sops.secrets."coulon/binary-cache/private" = {
+    group = "wheel";
+    mode = "444";
   };
-
-  sops = {
-    # required key file
-    age.keyFile = "/home/alice/.config/sops/age/keys.txt";
-    defaultSopsFile = ./secrets.yaml;
-    # this will instantiate the secret in /run/secrets, making it available after evaluation
-    secrets."coulon/binary-cache/private" = {
-      group = "wheel";
-      mode = "444";
-    };
-  };
-
-  imports = [
-    # Include the results of the hardware scan.
-    ./fix.nix
-    ./nix.nix
-    ./locale.nix
-    ./nvidia.nix
-    ./alice.nix
-    ./home-manager.nix
-    ./gdm.nix
-    ./nvf.nix
-    ./lix.nix
-  ];
 
   # Bootloader.
   boot = {
