@@ -1,4 +1,4 @@
-{ modulesPath }:
+{ modulesPath, ... }:
 {
   imports = [
     ../machine-base.nix
@@ -6,7 +6,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     ./configuration.nix
     ./hardware-configuration.nix
-    ./contabo-networking.nix
+    ../../modules/contabo-networking.nix
     ./disk-config.nix
   ];
 }
