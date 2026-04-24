@@ -7,16 +7,6 @@
 }:
 {
   nix = {
-    optimise = {
-      automatic = true;
-      dates = [ "daily" ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      persistent = true;
-      options = "--delete-older-than 30d";
-    };
     settings = {
       # additional binary caches to use
       substituters = [
@@ -28,14 +18,10 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         values.coulon.binary-cache.public
       ];
-      experimental-features = "nix-command flakes";
       # this option is not in search, but documented here:
       # https://nix.dev/manual/nix/2.34/command-ref/conf-file.html#conf-secret-key-files
       secret-key-files = [ config.sops.secrets."coulon/binary-cache/private".path ];
     };
-    # The nix-daemon's scheduling priority is set lowest to lessen the impact on system performance
-    # during auto-Upgrades
-    daemonIOSchedPriority = 7; # 0 is highest, 7 is lowest
   };
 
   nixpkgs.config = {

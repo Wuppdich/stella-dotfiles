@@ -60,24 +60,14 @@
     };
   };
 
-  nix = {
-    optimise = {
-      automatic = true;
-      dates = [ "daily" ];
-    };
-    # The nix-daemon's scheduling priority is set lowest to lessen the impact on system performance
-    # during auto-Upgrades
-    daemonIOSchedPriority = 7; # 0 is highest, 7 is lowest
-    settings = {
-      substituters = [
-        "https://nix-community.cachix.org"
-      ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        # we need to read this from a file in the repo, because there is no way to set a key file directly.
-        values.coulon.binary-cache.public
-      ];
-    };
+  nix.settings = {
+    substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      values.coulon.binary-cache.public
+    ];
   };
 
   system = {
