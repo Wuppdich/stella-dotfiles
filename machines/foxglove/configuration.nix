@@ -35,14 +35,6 @@
     };
   };
 
-  environment.systemPackages =
-    with pkgs;
-    map lib.lowPrio [
-      curl
-      btop
-      hyfetch
-    ];
-
   virtualisation.docker.enable = true;
 
   users = {

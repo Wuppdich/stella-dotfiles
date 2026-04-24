@@ -21,10 +21,14 @@
     };
   };
 
-  # values = import ../values.nix;
-
   imports = [
     ../modules/lix.nix
+  ];
+
+  environment.systemPackages = with pkgs; [
+    curl
+    btop
+    hyfetch
   ];
 
   programs = {
