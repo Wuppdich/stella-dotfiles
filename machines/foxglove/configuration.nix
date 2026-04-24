@@ -43,18 +43,6 @@
       hyfetch
     ];
 
-  programs = {
-    git = {
-      enable = true;
-      package = pkgs.gitMinimal;
-    };
-    neovim = {
-      enable = true;
-      vimAlias = true;
-      defaultEditor = true;
-    };
-  };
-
   virtualisation.docker.enable = true;
 
   users = {

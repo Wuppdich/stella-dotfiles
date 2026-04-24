@@ -26,4 +26,16 @@
   imports = [
     ../modules/lix.nix
   ];
+
+  programs = {
+    git = {
+      enable = true;
+      package = pkgs.gitMinimal;
+    };
+    neovim = {
+      enable = true;
+      vimAlias = true;
+      defaultEditor = true;
+    };
+  };
 }

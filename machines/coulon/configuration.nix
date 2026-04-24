@@ -135,7 +135,7 @@
       enable = true;
       remotePlay.openFirewall = true;
     };
-    git.enable = true;
+    git.package = pkgs.git;
     direnv.enable = true;
     wireshark.enable = true;
   };
