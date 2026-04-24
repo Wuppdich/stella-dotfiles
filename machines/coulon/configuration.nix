@@ -109,9 +109,6 @@
     winetricks
     lm_sensors
     # tools
-    git
-    btop
-    hyfetch
   ];
 
   programs = {
