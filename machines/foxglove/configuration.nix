@@ -1,11 +1,9 @@
 # a VPS (4 Cores, 8GB Ram) hosted by contabo
 {
-  lib,
-  pkgs,
   config,
   values,
   ...
-}@args:
+}:
 {
   sops.secrets.password-server-foxglove.neededForUsers = true;
 
@@ -24,8 +22,8 @@
       addresses = values.foxglove.ipAdresses;
     };
   };
+
   time.timeZone = "Europe/Berlin";
-  # console.keyMap = "de";
 
   services.openssh = {
     enable = true;
