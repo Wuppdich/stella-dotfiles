@@ -5,7 +5,7 @@
   ...
 }:
 {
-  sops.secrets.password-server-foxglove.neededForUsers = true;
+  sops.secrets.password-server-raven.neededForUsers = true;
 
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -15,11 +15,11 @@
   };
 
   networking = {
-    hostName = "foxglove";
+    hostName = "raven";
     contabo = {
       enable = true;
-      mac = values.foxglove.mac;
-      addresses = values.foxglove.ipAdresses;
+      mac = values.raven.mac;
+      addresses = values.raven.ipAdresses;
     };
   };
 
@@ -50,7 +50,7 @@
           coulon.ssh.root.ed25519.public
           coulon.ssh.alice.ed25519.public
         ];
-        hashedPasswordFile = config.sops.secrets.password-server-foxglove.path;
+        hashedPasswordFile = config.sops.secrets.password-server-raven.path;
       };
 
       root = {
