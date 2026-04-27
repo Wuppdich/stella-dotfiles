@@ -94,7 +94,26 @@
         "musnix": "musnix",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "secrets": "secrets",
         "sops-nix": "sops-nix"
+      }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777278973,
+        "narHash": "sha256-24io6h0DzmE4Qm27U6LjpmdVn/pfoxADumRES2F94+M=",
+        "ref": "main",
+        "rev": "e4246f6c522ab47304db4202800b4d4a35bf3876",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@git.gay/stellawupp/stella-dotfiles-secrets.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@git.gay/stellawupp/stella-dotfiles-secrets.git"
       }
     },
     "sops-nix": {

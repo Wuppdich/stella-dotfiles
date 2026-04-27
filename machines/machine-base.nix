@@ -8,14 +8,17 @@
 }:
 {
   sops = {
-    # required key file
-    age.keyFile = "/home/alice/.config/sops/age/keys.txt";
-    defaultSopsFile = ../secrets.yaml;
+    defaultSopsFile = "${builtins.toString inputs.secrets}/secrets.yaml";
+    age = {
+      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
   };
 
   # attributes, that can be input into other nix modules (just like inputs, pkgs, config etc.)
   _module.args = {
-    values = import ../values.nix;
+    values = import "${builtins.toString inputs.secrets}/values.nix";
     pkgsUnstable = import inputs.nixpkgs-unstable {
       inherit (pkgs.stdenv.hostPlatform) system;
       inherit (config.nixpkgs) config;
@@ -35,7 +38,7 @@
   programs = {
     git = {
       enable = true;
-      package =  lib.mkDefault pkgs.gitMinimal;
+      package = lib.mkDefault pkgs.gitMinimal;
     };
     neovim = {
       enable = true;

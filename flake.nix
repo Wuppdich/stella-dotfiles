@@ -13,6 +13,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     musnix.url = "github:musnix/musnix";
     musnix.inputs.nixpkgs.follows = "nixpkgs";
+    secrets = {
+      url = "git+ssh://git@git.gay/stellawupp/stella-dotfiles-secrets.git?ref=main&shallow=1";
+      flake = false;
+    };
   };
 
   outputs =
@@ -29,6 +33,7 @@
       # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
       nixosConfigurations = {
         default = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
           modules = [
           ];
         };
@@ -45,13 +50,14 @@
           specialArgs = { inherit inputs; };
         };
 
-        foxglove = nixpkgs.lib.nixosSystem {
+        raven = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./machines/foxglove
+            ./machines/raven
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
           ];
+          specialArgs = { inherit inputs; };
         };
 
       };
