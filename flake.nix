@@ -33,7 +33,6 @@
       # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
       nixosConfigurations = {
         default = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
           ];
         };
@@ -46,15 +45,16 @@
           system = "x86_64-linux";
           modules = [
             ./machines/egg
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             disko.nixosModules.disko
           ];
           specialArgs = { inherit inputs; };
         };
 
         coulon = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             ./machines/coulon
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
@@ -64,9 +64,9 @@
         };
 
         raven = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             ./machines/raven
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
           ];
