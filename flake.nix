@@ -38,6 +38,19 @@
           ];
         };
 
+        # nix run github:nix-community/nixos-anywhere -- \
+        #     --generate-hardware-config nixos-generate-config ./hardware-configuration.nix \
+        #     --flake ./#egg \
+        #     --target-host root@123.123.123.123
+        egg = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./machines/egg
+            disko.nixosModules.disko
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
         coulon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
