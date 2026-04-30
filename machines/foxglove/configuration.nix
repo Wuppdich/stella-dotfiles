@@ -1,25 +1,13 @@
+# a VPS (4 Cores, 8GB Ram) hosted by contabo
 {
-  modulesPath,
   lib,
   pkgs,
   config,
+  values,
   ...
 }@args:
 {
-  sops = {
-    # required key file
-    age.keyFile = "/home/alice/.config/sops/age/keys.txt";
-    defaultSopsFile = ../secrets.yaml;
-    secrets.password-server-foxglove.neededForUsers = true;
-  };
-
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    (modulesPath + "/profiles/qemu-guest.nix")
-    ./disk-config.nix
-    ./contabo-networking.nix
-    ../lix.nix
-  ];
+  sops.secrets.password-server-foxglove.neededForUsers = true;
 
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -28,7 +16,14 @@
     efiInstallAsRemovable = true;
   };
 
-  networking.hostName = "foxglove";
+  networking = {
+    hostName = "foxglove";
+    contabo = {
+      enable = true;
+      mac = values.foxglove.mac;
+      addresses = values.foxglove.ipAdresses;
+    };
+  };
   time.timeZone = "Europe/Berlin";
   # console.keyMap = "de";
 
@@ -73,8 +68,9 @@
           "wheel"
           "docker"
         ];
-        openssh.authorizedKeys.keys = [
-          "123"
+        openssh.authorizedKeys.keys = with values; [
+          coulon.ssh.root.ed25519.public
+          coulon.ssh.alice.ed25519.public
         ];
         hashedPasswordFile = config.sops.secrets.password-server-foxglove.path;
       };
@@ -99,7 +95,7 @@
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         # we need to read this from a file in the repo, because there is no way to set a key file directly.
-        (builtins.readFile ../coulon_nix_key.pub)
+        values.coulon.binary-cache.public
       ];
     };
   };

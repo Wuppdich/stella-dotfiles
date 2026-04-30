@@ -1,8 +1,10 @@
 {
   inputs = {
-    # use brand (eg. "nixos-25.11") not tags (eg "25.11") or you won't get backports
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOs/nixpkgs/nixos-unstable";
+    # use channel tarball instead of github. thanks isabel :)
+    # https://github.com/isabelroses/dotfiles/blob/main/flake.nix#L9
+    nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
+    nixpkgs-unstable.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -34,9 +36,8 @@
         coulon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            ./machines/coulon
             disko.nixosModules.disko
-            ./configuration.nix
-            ./hardware-configuration.nix
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
@@ -47,9 +48,8 @@
         foxglove = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            ./machines/foxglove
             disko.nixosModules.disko
-            ./foxglove/configuration.nix
-            ./foxglove/hardware-configuration.nix
             sops-nix.nixosModules.sops
           ];
         };
