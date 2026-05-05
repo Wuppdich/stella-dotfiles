@@ -12,7 +12,7 @@
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
-    ./musnix
+    ../musnix
     ./fix.nix
     ./home-manager.nix
   ];
