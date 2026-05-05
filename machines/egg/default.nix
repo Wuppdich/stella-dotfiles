@@ -1,4 +1,4 @@
-# bootstrap config
+# transition system from any *nix-system to NixOS via nixos-anywhere
 {
   modulesPath,
   ...
