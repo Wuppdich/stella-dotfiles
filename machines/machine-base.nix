@@ -27,6 +27,7 @@
 
   imports = [
     ../modules/lix.nix
+    ../modules/contabo-networking.nix
   ];
 
   environment.systemPackages = with pkgs; [

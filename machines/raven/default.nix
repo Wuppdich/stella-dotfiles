@@ -11,7 +11,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./hardware-configuration.nix
-    ../../modules/contabo-networking.nix
     ./disk-config.nix
   ];
   sops.secrets.password-server-raven.neededForUsers = true;
