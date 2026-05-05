@@ -63,4 +63,24 @@
     daemonIOSchedPriority = 7; # 0 is highest, 7 is lowest
     settings.experimental-features = "nix-command flakes lix-custom-sub-commands";
   };
+
+  system = {
+    autoUpgrade = {
+      enable = lib.mkDefault true;
+      dates = "01:00";
+      fixedRandomDelay = true;
+      randomizedDelaySec = "3h";
+      upgrade = false;
+      flake = "github:Wuppdich/stella-dotfiles";
+      operation = lib.mkDefault "boot";
+      allowReboot = lib.mkDefault false;
+      rebootWindow = {
+        lower = "01:00";
+        upper = "05:00";
+      };
+      # FIXME: prevents OOM's. leave this at 1 until we have a way to monitor rebuild's RAM-usage
+      flags = [ "--max-jobs 1" ];
+      runGarbageCollection = true;
+    };
+  };
 }

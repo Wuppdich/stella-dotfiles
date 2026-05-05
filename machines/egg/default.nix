@@ -25,5 +25,8 @@
     "# CHANGE"
   ];
 
-  system.stateVersion = "24.05";
+  system = {
+    autoUpgrade.enable = false;
+    stateVersion = "24.05";
+  };
 }

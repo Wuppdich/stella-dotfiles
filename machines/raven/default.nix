@@ -79,18 +79,7 @@
   };
 
   system = {
-    # FIXME: do this but flakes
-    autoUpgrade = {
-      enable = false; # !
-      allowReboot = true;
-      rebootWindow = {
-        lower = "01:00";
-        upper = "05:00";
-      };
-      # FIXME: prevents OOM's. leave this at 1 until we have a way to monitor rebuild's RAM-usage
-      flags = [ "--max-jobs 1" ];
-      runGarbageCollection = true;
-    };
+    autoUpgrade.allowReboot = true;
     stateVersion = "25.11";
   };
 }
