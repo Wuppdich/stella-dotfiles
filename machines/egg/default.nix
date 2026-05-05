@@ -17,6 +17,16 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
+
+  networking = {
+    hostName = "egg";
+    contabo = {
+      enable = true;
+      mac = "";
+      addresses = [];
+    };
+  };
+
   services.openssh.enable = true;
 
   users.users.root.openssh.authorizedKeys.keys = [
