@@ -7,16 +7,6 @@
 {
   nix = {
     settings = {
-      # additional binary caches to use
-      substituters = [
-        "https://cache.nixos-cuda.org"
-        "https://nix-community.cachix.org"
-      ];
-      trusted-public-keys = [
-        "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        values.coulon.binary-cache.public
-      ];
       # this option is not in search, but documented here:
       # https://nix.dev/manual/nix/2.34/command-ref/conf-file.html#conf-secret-key-files
       secret-key-files = [ config.sops.secrets."coulon/binary-cache/private".path ];
