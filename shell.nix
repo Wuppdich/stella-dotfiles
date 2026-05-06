@@ -6,6 +6,9 @@ pkgs.mkShell {
     just
     just-lsp
     scc
+    sops
+    age
+    ssh-to-age
     nix-output-monitor
   ];
 }
