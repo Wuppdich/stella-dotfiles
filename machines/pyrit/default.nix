@@ -7,7 +7,7 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    ../coulon/hardware-configuration.nix
+    ./hardware-configuration.nix
     ./fix.nix
     ./home-manager.nix
     ../machine-base.nix
