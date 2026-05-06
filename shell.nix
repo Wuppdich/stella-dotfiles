@@ -6,6 +6,7 @@ pkgs.mkShell {
     just
     just-lsp
     scc
+    nix-output-monitor
   ];
 }
 
