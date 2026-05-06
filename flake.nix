@@ -63,6 +63,18 @@
           specialArgs = { inherit inputs; };
         };
 
+        pyrit = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./machines/pyrit
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+            home-manager.nixosModules.home-manager
+            musnix.nixosModules.musnix
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
         raven = nixpkgs.lib.nixosSystem {
           modules = [
             ./machines/raven
