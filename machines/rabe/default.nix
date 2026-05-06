@@ -13,7 +13,7 @@
     ./hardware-configuration.nix
     ./disk-config.nix
   ];
-  sops.secrets.password-server-raven.neededForUsers = true;
+  sops.secrets.rabe.passwords.server.neededForUsers = true;
 
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -23,11 +23,11 @@
   };
 
   networking = {
-    hostName = "raven";
+    hostName = "rabe";
     contabo = {
       enable = true;
-      mac = values.raven.mac;
-      addresses = values.raven.ipAdresses;
+      mac = values.rabe.mac;
+      addresses = values.rabe.ipAdresses;
     };
   };
 
@@ -58,7 +58,7 @@
           coulon.ssh.root.ed25519.public
           coulon.ssh.alice.ed25519.public
         ];
-        hashedPasswordFile = config.sops.secrets.password-server-raven.path;
+        hashedPasswordFile = config.sops.secrets.rabe.passwords.server.path;
       };
 
       root = {

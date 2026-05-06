@@ -75,9 +75,9 @@
           specialArgs = { inherit inputs; };
         };
 
-        raven = nixpkgs.lib.nixosSystem {
+        rabe = nixpkgs.lib.nixosSystem {
           modules = [
-            ./machines/raven
+            ./machines/rabe
             { nixpkgs.hostPlatform = "x86_64-linux"; }
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
