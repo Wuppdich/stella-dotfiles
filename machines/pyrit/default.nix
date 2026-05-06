@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   pkgsUnstable,
@@ -211,6 +212,19 @@
       remotePlay.openFirewall = true;
     };
     direnv.enable = true;
+  };
+
+  sops.secrets."pyrit/binary-cache/private" = {
+    group = "wheel";
+    mode = "444";
+  };
+
+  nix = {
+    settings = {
+      # this option is not in search, but documented here:
+      # https://nix.dev/manual/nix/2.34/command-ref/conf-file.html#conf-secret-key-files
+      secret-key-files = [ config.sops.secrets."pyrit/binary-cache/private".path ];
+    };
   };
 
   system = {

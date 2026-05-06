@@ -73,6 +73,7 @@
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         values.coulon.binary-cache.public
+        values.pyrit.binary-cache.public
       ];
       experimental-features = "nix-command flakes lix-custom-sub-commands";
     };
