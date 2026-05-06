@@ -19,7 +19,7 @@
 
   # attributes, that can be input into other nix modules (just like inputs, pkgs, config etc.)
   _module.args = {
-    values = import "${builtins.toString inputs.secrets}/values.nix";
+    values = import "${builtins.toString inputs.secrets}/private.nix";
     pkgsUnstable = import inputs.nixpkgs-unstable {
       inherit (pkgs.stdenv.hostPlatform) system;
       inherit (config.nixpkgs) config;
