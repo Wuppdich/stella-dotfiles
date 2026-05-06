@@ -8,8 +8,9 @@ nix-current := "/run/current-system/"
 nix-build-output := "./result/"
 prev-nix-profile := '$(find ' + nix-profiles + ' -type l -name "system-*-link" | sort -rg | sed -n "2 p")'
 nom := "--verbose --json &| nom"
+host := "$(hostname)"
 
-_sudo:
+@_sudo:
     sudo true
 
 # compares the current system configuration to the previous system configuration
@@ -20,16 +21,16 @@ diff:
 diff-build:
     lix diff {{ nix-current }} {{ nix-build-output }}
 
-_rebuild VERB="build": _sudo
-    sudo nixos-rebuild {{ VERB }} --flake {{ nom }}
+_rebuild VERB="build" TARGET=host: _sudo
+    sudo nixos-rebuild {{ VERB }} --flake .#{{ TARGET }} {{ nom }}
 
 # builds the current derivation
-build:
-    just _rebuild build diff-build
+@build TARGET=host:
+    just _rebuild build {{ TARGET }} diff-build
 
 # switches system to the current configuration
-switch:
-    just _rebuild switch diff
+@switch TARGET=host:
+    just _rebuild switch {{ TARGET }} diff
 
 # prints code stats
 stats:
