@@ -18,6 +18,7 @@
       "audio"
       "wireshark"
       "docker"
+      "lp"
     ];
     packages = with pkgs; [
       # internet
