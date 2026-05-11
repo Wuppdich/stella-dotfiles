@@ -22,8 +22,9 @@
     hostName = "egg";
     contabo = {
       enable = true;
-      mac = "";
-      addresses = [];
+      # set mac, IPv4 and IPv6 addresses
+      mac = "00:00";
+      addresses = [ "123.123.123.123"  "01::1" ];
     };
   };
 

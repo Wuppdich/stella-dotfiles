@@ -47,6 +47,7 @@
             ./machines/egg
             { nixpkgs.hostPlatform = "x86_64-linux"; }
             disko.nixosModules.disko
+            sops-nix.nixosModules.sops
           ];
           specialArgs = { inherit inputs; };
         };
