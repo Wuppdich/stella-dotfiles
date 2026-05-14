@@ -26,6 +26,8 @@
     };
   };
 
+  time.timeZone = lib.mkDefault "Europe/Berlin";
+
   imports = [
     ../modules/lix.nix
     ../modules/contabo-networking.nix
