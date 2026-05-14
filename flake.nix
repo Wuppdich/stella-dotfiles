@@ -42,7 +42,6 @@
         #     --flake ./#egg \
         #     --target-host root@123.123.123.123
         egg = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             ./machines/egg
             { nixpkgs.hostPlatform = "x86_64-linux"; }
