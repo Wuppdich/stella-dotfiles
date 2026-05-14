@@ -7,7 +7,7 @@ nix-profiles := "/nix/var/nix/profiles"
 nix-current := "/run/current-system/"
 nix-build-output := "./result/"
 prev-nix-profile := '$(find ' + nix-profiles + ' -type l -name "system-*-link" | sort -rg | sed -n "2 p")'
-nom := "--verbose --json &| nom"
+nom := "--log-format internal-json &| nom --json"
 host := "$(hostname)"
 
 @_sudo:
