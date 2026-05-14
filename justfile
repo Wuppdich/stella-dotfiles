@@ -1,4 +1,3 @@
-set shell := ["fish", "-c"]
 
 _default:
     @just --list
@@ -7,7 +6,6 @@ nix-profiles := "/nix/var/nix/profiles"
 nix-current := "/run/current-system/"
 nix-build-output := "./result/"
 prev-nix-profile := '$(find ' + nix-profiles + ' -type l -name "system-*-link" | sort -rg | sed -n "2 p")'
-nom := "--log-format internal-json &| nom --json"
 host := "$(hostname)"
 
 @_sudo:
@@ -22,7 +20,11 @@ diff-build:
     lix diff {{ nix-current }} {{ nix-build-output }}
 
 _rebuild VERB="build" TARGET=host: _sudo
-    sudo nixos-rebuild {{ VERB }} --flake .#{{ TARGET }} {{ nom }}
+    #!/usr/bin/env bash
+    sudo nixos-rebuild {{ VERB }} \
+    --flake .#{{ TARGET }} \
+    --log-format internal-json \
+    |& nom --json
 
 # builds the current derivation
 @build TARGET=host:
