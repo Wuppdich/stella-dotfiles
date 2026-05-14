@@ -1,6 +1,6 @@
 set shell := ["fish", "-c"]
 
-default:
+_default:
     @just --list
 
 nix-profiles := "/nix/var/nix/profiles"
