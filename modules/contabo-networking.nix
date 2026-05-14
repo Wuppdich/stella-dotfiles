@@ -26,7 +26,7 @@ in
       networks."10-contabo-network" =
         let
           # Gateway assumed by setting the last byte of the ip to 1
-          mkGateway = address: (builtins.elemAt (builtins.split "[[:digit:]]{1,3}$" address) 0) + "1";
+          mkGateway = address: (builtins.elemAt (builtins.split "[[:digit:]]{1,3}\/[[:digit:]]{1,2}$" address) 0) + "1";
           # values from `netplan get` and /run/systemd/network/*.{network|link} on the original server
           netplan = {
             dns = [
