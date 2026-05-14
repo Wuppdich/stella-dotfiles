@@ -3,46 +3,63 @@
 default:
     @just --list
 
-nix-profiles := "/nix/var/nix/profiles"
-nix-current := "/run/current-system/"
-nix-build-output := "./result/"
-prev-nix-profile := '$(find ' + nix-profiles + ' -type l -name "system-*-link" | sort -rg | sed -n "2 p")'
-host := "$(hostname)"
+NIX_CURRENT := "/run/current-system/"
+HOST := "$(hostname)"
+LATEST-COMMIT-HASH := "$(git rev-parse --short HEAD)"
+GIT-CLONE-PATH := "/tmp/just-build-output/commit-" + LATEST-COMMIT-HASH
 
 [private]
 @sudo:
     sudo true
 
-# compares the current system configuration to the previous system configuration
-diff:
-    lix diff {{ prev-nix-profile }} {{ nix-current }}
+[private]
+path PATH TARGET:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    nix path-info --derivation \
+        {{ PATH }}#nixosConfigurations.{{ TARGET }}.config.system.build.toplevel
 
-# compares the derivation in the "result" directory to the current system
-diff-build:
-    lix diff {{ nix-current }} {{ nix-build-output }}
+# compares derivation of the latest commit to derivation of current worktree
+diff TARGET=HOST:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [ ! -d {{ GIT-CLONE-PATH }} ]; then
+        git clone ./ {{ GIT-CLONE-PATH }}
+    fi
+    lix diff \
+        $(just path {{ GIT-CLONE-PATH }} {{ TARGET }}) \
+        $(just path . {{ TARGET }})
+
+# compares current system to derivation of current worktree
+diff-system TARGET=HOST:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    lix diff \
+        $(nix path-info --derivation {{ NIX_CURRENT }}) \
+        $(just path . {{ TARGET }})
 
 [private]
-rebuild VERB="build" TARGET=host: sudo
+rebuild VERB="build" TARGET=HOST: sudo
     #!/usr/bin/env bash
     set -euo pipefail
     sudo nixos-rebuild {{ VERB }} \
-    --flake .#{{ TARGET }} \
-    --log-format internal-json \
-    |& nom --json
+        --flake .#{{ TARGET }} \
+        --log-format internal-json \
+        |& nom --json
 
 # builds the current derivation
-@build TARGET=host:
-    just rebuild build {{ TARGET }} diff-build
+@build TARGET=HOST:
+    just rebuild build {{ TARGET }}
 
 # switches system to the current configuration
-@switch TARGET=host:
-    just rebuild switch {{ TARGET }} diff
+@switch TARGET=HOST:
+    just rebuild switch {{ TARGET }}
 
 # prints code stats
 stats:
     scc \
-    --wide \
-    --dryness \
-    --by-file \
-    --sort complexity \
-    --avg-wage 84945
+        --wide \
+        --dryness \
+        --by-file \
+        --sort complexity \
+        --avg-wage 84945
