@@ -24,6 +24,7 @@ diff-build:
 [private]
 rebuild VERB="build" TARGET=host: sudo
     #!/usr/bin/env bash
+    set -euo pipefail
     sudo nixos-rebuild {{ VERB }} \
     --flake .#{{ TARGET }} \
     --log-format internal-json \
