@@ -36,4 +36,9 @@ _rebuild VERB="build" TARGET=host: _sudo
 
 # prints code stats
 stats:
-    scc --wide --dryness --by-file --sort complexity --avg-wage 84945
+    scc \
+    --wide \
+    --dryness \
+    --by-file \
+    --sort complexity \
+    --avg-wage 84945
