@@ -5,10 +5,10 @@ default:
 
 NIX_CURRENT := "/run/current-system/"
 HOST := "$(hostname)"
-LATEST-COMMIT-HASH := "$(git rev-parse --short HEAD)"
-LATEST-COMMIT-FOLDER := "commit-" + LATEST-COMMIT-HASH
+LATEST_COMMIT_HASH := "$(git rev-parse --short HEAD)"
+LATEST_COMMIT_FOLDER := "commit-" + LATEST_COMMIT_HASH
 TMP_DIR := "/tmp/just-nix/"
-GIT-CLONE-PATH := TMP_DIR + LATEST-COMMIT-FOLDER
+GIT_CLONE_PATH := TMP_DIR + LATEST_COMMIT_FOLDER
 
 
 [private]
@@ -20,14 +20,14 @@ path PATH TARGET:
 git-clone-to-tmp:
     #!/usr/bin/env bash
     set -euo pipefail
-    if [ ! -d {{ GIT-CLONE-PATH }} ]; then
-        git clone ./ {{ GIT-CLONE-PATH }}
+    if [ ! -d {{ GIT_CLONE_PATH }} ]; then
+        git clone ./ {{ GIT_CLONE_PATH }}
     fi
 
 # compares derivation of the latest commit to derivation of current worktree
 diff TARGET=HOST: git-clone-to-tmp
     lix diff \
-        $(just path {{ GIT-CLONE-PATH }} {{ TARGET }}) \
+        $(just path {{ GIT_CLONE_PATH }} {{ TARGET }}) \
         $(just path . {{ TARGET }})
 
 # compares current system to derivation of current worktree
