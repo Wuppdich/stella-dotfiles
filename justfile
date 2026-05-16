@@ -8,9 +8,6 @@ HOST := "$(hostname)"
 LATEST-COMMIT-HASH := "$(git rev-parse --short HEAD)"
 GIT-CLONE-PATH := "/tmp/just-build-output/commit-" + LATEST-COMMIT-HASH
 
-[private]
-@sudo:
-    sudo true
 
 [private]
 path PATH TARGET:
@@ -38,22 +35,30 @@ diff-system TARGET=HOST:
         $(nix path-info --derivation {{ NIX_CURRENT }}) \
         $(just path . {{ TARGET }})
 
+# errors, if the given target is not the host system
 [private]
-rebuild VERB="build" TARGET=HOST: sudo
+check_host TARGET:
     #!/usr/bin/env bash
     set -euo pipefail
-    sudo nixos-rebuild {{ VERB }} \
+    [ {{ TARGET }} = {{ HOST }} ]
+
+build TARGET=HOST:
+    just rebuild build {{ TARGET }}
+
+switch TARGET=HOST: (check_host TARGET)
+    sudo just rebuild switch {{ TARGET }}
+
+test TARGET=HOST: (check_host TARGET)
+    sudo just rebuild test {{ TARGET }}
+
+[private]
+rebuild VERB TARGET:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    nixos-rebuild {{ VERB }} \
         --flake .#{{ TARGET }} \
         --log-format internal-json \
         |& nom --json
-
-# builds the current derivation
-@build TARGET=HOST:
-    just rebuild build {{ TARGET }}
-
-# switches system to the current configuration
-@switch TARGET=HOST:
-    just rebuild switch {{ TARGET }}
 
 # prints code stats
 stats:
