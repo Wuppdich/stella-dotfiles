@@ -51,11 +51,11 @@ test TARGET=HOST: (check_host TARGET)
     sudo just rebuild test {{ TARGET }}
 
 [private]
-rebuild VERB TARGET:
+rebuild VERB TARGET FLAKE_PATH=".":
     #!/usr/bin/env bash
     set -euo pipefail
     nixos-rebuild {{ VERB }} \
-        --flake .#{{ TARGET }} \
+        --flake {{ FLAKE_PATH }}#{{ TARGET }} \
         --log-format internal-json \
         |& nom --json
 
