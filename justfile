@@ -14,13 +14,16 @@ path PATH TARGET:
     nix path-info --derivation \
         {{ PATH }}#nixosConfigurations.{{ TARGET }}.config.system.build.toplevel
 
-# compares derivation of the latest commit to derivation of current worktree
-diff TARGET=HOST:
+[private]
+git-clone-to-tmp:
     #!/usr/bin/env bash
     set -euo pipefail
     if [ ! -d {{ GIT-CLONE-PATH }} ]; then
         git clone ./ {{ GIT-CLONE-PATH }}
     fi
+
+# compares derivation of the latest commit to derivation of current worktree
+diff TARGET=HOST: git-clone-to-tmp
     lix diff \
         $(just path {{ GIT-CLONE-PATH }} {{ TARGET }}) \
         $(just path . {{ TARGET }})
