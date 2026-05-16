@@ -6,7 +6,9 @@ default:
 NIX_CURRENT := "/run/current-system/"
 HOST := "$(hostname)"
 LATEST-COMMIT-HASH := "$(git rev-parse --short HEAD)"
-GIT-CLONE-PATH := "/tmp/just-build-output/commit-" + LATEST-COMMIT-HASH
+LATEST-COMMIT-FOLDER := "commit-" + LATEST-COMMIT-HASH
+TMP_DIR := "/tmp/just-nix/"
+GIT-CLONE-PATH := TMP_DIR + LATEST-COMMIT-FOLDER
 
 
 [private]
