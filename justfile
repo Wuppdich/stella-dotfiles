@@ -11,8 +11,6 @@ GIT-CLONE-PATH := "/tmp/just-build-output/commit-" + LATEST-COMMIT-HASH
 
 [private]
 path PATH TARGET:
-    #!/usr/bin/env bash
-    set -euo pipefail
     nix path-info --derivation \
         {{ PATH }}#nixosConfigurations.{{ TARGET }}.config.system.build.toplevel
 
@@ -29,8 +27,6 @@ diff TARGET=HOST:
 
 # compares current system to derivation of current worktree
 diff-system TARGET=HOST:
-    #!/usr/bin/env bash
-    set -euo pipefail
     lix diff \
         $(nix path-info --derivation {{ NIX_CURRENT }}) \
         $(just path . {{ TARGET }})
@@ -38,8 +34,6 @@ diff-system TARGET=HOST:
 # errors, if the given target is not the host system
 [private]
 check_host TARGET:
-    #!/usr/bin/env bash
-    set -euo pipefail
     [ {{ TARGET }} = {{ HOST }} ]
 
 build TARGET=HOST:
