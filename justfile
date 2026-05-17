@@ -3,7 +3,7 @@
 default:
     @just --list
 
-NIX_CURRENT := "/run/current-system/"
+NIX_CURRENT_SYSTEM := "/run/current-system/"
 HOST := "$(hostname)"
 LATEST_COMMIT_HASH := "$(git rev-parse --short HEAD)"
 LATEST_COMMIT_FOLDER := "commit-" + LATEST_COMMIT_HASH
@@ -26,15 +26,19 @@ git-clone-to-tmp:
 
 # compares derivation of the latest commit to derivation of current worktree
 diff TARGET=HOST: git-clone-to-tmp
-    lix diff \
-        $(just path {{ GIT_CLONE_PATH }} {{ TARGET }}) \
-        $(just path . {{ TARGET }})
+    #!/usr/bin/env bash
+    set -euo pipefail
+    current=$(just path {{ GIT_CLONE_PATH }} {{ TARGET }})
+    prev=$(just path . {{ TARGET }})
+    lix diff $current $last
 
 # compares current system to derivation of current worktree
 diff-system TARGET=HOST:
-    lix diff \
-        $(nix path-info --derivation {{ NIX_CURRENT }}) \
-        $(just path . {{ TARGET }})
+    #!/usr/bin/env bash
+    set -euo pipefail
+    current=$(nix path-info --derivation {{ NIX_CURRENT_SYSTEM }})
+    prev=$(just path . {{ TARGET }})
+    lix diff $current $last
 
 # errors, if the given target is not the host system
 [private]
