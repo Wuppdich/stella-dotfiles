@@ -57,12 +57,19 @@ switch TARGET=HOST: (check_host TARGET)
 test TARGET=HOST: (check_host TARGET)
     sudo just rebuild test {{ TARGET }}
 
+deploy TARGET DESTINATION:
+    just rebuild switch {{TARGET}} "." \
+        --target-host {{DESTINATION}} \
+        --use-substitutes \
+        --sudo --ask-sudo-password
+
 [private]
-rebuild VERB TARGET FLAKE_PATH=".":
+rebuild VERB TARGET FLAKE_PATH="." *ARGS:
     #!/usr/bin/env bash
     set -euo pipefail
     nixos-rebuild {{ VERB }} \
         --flake {{ FLAKE_PATH }}#{{ TARGET }} \
+        {{ ARGS }} \
         --log-format internal-json \
         |& nom --json
 
