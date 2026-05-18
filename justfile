@@ -12,7 +12,7 @@ GIT_CLONE_PATH := TMP_DIR + LATEST_COMMIT_FOLDER
 
 
 [private]
-path PATH TARGET:
+flake-path-info PATH TARGET:
     nix path-info --derivation \
         {{ PATH }}#nixosConfigurations.{{ TARGET }}.config.system.build.toplevel
 
@@ -28,8 +28,8 @@ git-clone-to-tmp:
 diff TARGET=HOST: git-clone-to-tmp
     #!/usr/bin/env bash
     set -euo pipefail
-    current=$(just path {{ GIT_CLONE_PATH }} {{ TARGET }})
-    prev=$(just path . {{ TARGET }})
+    current=$(just flake-path-info {{ GIT_CLONE_PATH }} {{ TARGET }})
+    prev=$(just flake-path-info . {{ TARGET }})
     lix diff $current $last
 
 # compares current system to derivation of current worktree
@@ -37,7 +37,7 @@ diff-system TARGET=HOST:
     #!/usr/bin/env bash
     set -euo pipefail
     current=$(nix path-info --derivation {{ NIX_CURRENT_SYSTEM }})
-    prev=$(just path . {{ TARGET }})
+    prev=$(just flake-path-info . {{ TARGET }})
     lix diff $current $last
 
 # errors, if the given target is not the host system
