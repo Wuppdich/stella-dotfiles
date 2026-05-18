@@ -24,6 +24,9 @@ git-clone-to-tmp:
         git clone ./ {{ GIT_CLONE_PATH }}
     fi
 
+eval TARGET=HOST:
+    less $(just flake-path-info . {{ TARGET }})
+
 # compares derivation of the latest commit to derivation of current worktree
 diff TARGET=HOST: git-clone-to-tmp
     #!/usr/bin/env bash
