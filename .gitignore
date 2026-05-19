@@ -3,3 +3,4 @@ result
 secrets
 .direnv
 .envrc
+*key.txt
