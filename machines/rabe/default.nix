@@ -56,8 +56,10 @@
           "docker"
         ];
         openssh.authorizedKeys.keys = with values; [
-          coulon.ssh.root.ed25519.public
-          coulon.ssh.alice.ed25519.public
+          coulon.ssh-public.root
+          coulon.ssh-public.alice
+          pyrit.ssh-public.alice
+          pyrit.ssh-public.root
         ];
         hashedPasswordFile = config.sops.secrets."rabe/passwords/server".path;
       };

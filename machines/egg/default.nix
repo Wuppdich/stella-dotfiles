@@ -41,10 +41,10 @@
     mutableUsers = false;
     users.root = {
       openssh.authorizedKeys.keys = with values; [
-        coulon.ssh.root.ed25519.public
-        coulon.ssh.alice.ed25519.public
-        pyrit.ssh.alice.ed25519.public
-        pyrit.ssh.root.ed25519.public
+        coulon.ssh-public.root
+        coulon.ssh-public.alice
+        pyrit.ssh-public.alice
+        pyrit.ssh-public.root
       ];
       hashedPassword = values.egg.root.hashedPassword;
     };
