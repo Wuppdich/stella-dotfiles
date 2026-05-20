@@ -11,9 +11,10 @@
   sops = {
     defaultSopsFile = "${builtins.toString inputs.secrets}/secrets.yaml";
     age = {
-      sshKeyPaths = [ "/root/.ssh/id_ed25519" "/etc/ssh/ssh_host_ed25519_key" ];
+      # we want no generated keys
+      sshKeyPaths = [ ];
+      generateKey = false;
       keyFile = "/var/lib/sops-nix/key.txt";
-      generateKey = true;
     };
   };
 
