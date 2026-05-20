@@ -58,8 +58,9 @@ test TARGET=HOST: (check_host TARGET)
     sudo just rebuild test {{ TARGET }}
 
 deploy TARGET DESTINATION:
-    just rebuild switch {{TARGET}} "." \
-        --target-host {{DESTINATION}} \
+    echo "### NOM EATS THE SUDO PROMPT! ENTER BLINDLY! ###"
+    just rebuild switch {{ TARGET }} "." \
+        --target-host {{ DESTINATION }} \
         --use-substitutes \
         --sudo --ask-sudo-password
 
