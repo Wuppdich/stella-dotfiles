@@ -82,3 +82,6 @@ stats:
         --by-file \
         --sort complexity \
         --avg-wage 84945
+
+update-secrets:
+    cd secrets && sops updatekeys $(find . -type f -regex ".*\/[a-zA-Z0-9-]+\.ya?ml")
