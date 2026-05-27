@@ -39,7 +39,7 @@
         keyFile = "/crypto_keyfile.bin";
       };
     };
-    # nct6775 enables Motherboard Sensors (like Voltages)
+    # nct6775 enables ASUS Motherboard Sensors (like Voltages)
     kernelModules = [ "nct6775" ];
   };
 
