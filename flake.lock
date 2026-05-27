@@ -101,10 +101,10 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1779202395,
-        "narHash": "sha256-QHIjCES0u2k2ymFSqenjxPhJx/DOdr9p6B2yW1Jza/M=",
+        "lastModified": 1779265439,
+        "narHash": "sha256-/+SoUWpRWqvK0dMZPg2x/ips4Y30JRvZ2x67MOEhJfY=",
         "ref": "main",
-        "rev": "5b8b2d3990be044d7b08049e9dab13c667b2727e",
+        "rev": "d51397e269a9db956bbdbd6967d5f70775d0ad82",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@git.gay/stellawupp/stella-dotfiles-secrets.git"
