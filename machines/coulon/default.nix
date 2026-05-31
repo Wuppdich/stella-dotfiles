@@ -111,7 +111,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # libs/envs/daemons
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
     libimobiledevice # iPhone
     ifuse # iPhone
     winetricks
