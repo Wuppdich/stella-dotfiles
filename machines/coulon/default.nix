@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 {
@@ -39,8 +40,9 @@
         keyFile = "/crypto_keyfile.bin";
       };
     };
-    # nct6775 enables ASUS Motherboard Sensors (like Voltages)
-    kernelModules = [ "nct6775" ];
+    extraModulePackages = with config.boot.kernelPackages; [ nct6687d ];
+    # nct6687d enables MSI Motherboard sensors
+    kernelModules = [ "nct6687" ];
   };
 
   networking = {
