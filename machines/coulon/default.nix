@@ -13,9 +13,10 @@
     ./nvidia.nix
     ./alice.nix
     ./home-manager.nix
-    ./gdm.nix
     ./nvf.nix
   ];
+
+  garden.gnome.enable = true;
 
   # this will instantiate the secret in /run/secrets, making it available after evaluation
   sops.secrets."coulon/binary-cache/private" = {
@@ -84,6 +85,8 @@
       };
     };
     usbmuxd.enable = true; # iPhone
+    # Load nvidia driver for Xorg and Wayland
+    xserver.videoDrivers = [ "nvidia" ];
   };
 
   musnix.enable = true;

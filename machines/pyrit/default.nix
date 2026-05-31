@@ -14,6 +14,8 @@
     ../machine-base.nix
   ];
 
+  garden.gnome.enable = true;
+
   # Bootloader.
   boot = {
     loader = {
@@ -57,17 +59,10 @@
     };
   };
 
-  services.xserver = {
-    # Enable the X11 windowing system.
-    enable = true;
-    # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    # Configure keymap in X11
-    xkb = {
-      layout = "de";
-      variant = "";
-    };
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "de";
+    variant = "";
   };
 
   # managed by gnome power daemon :TODO fix this
