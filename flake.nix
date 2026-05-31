@@ -2,7 +2,7 @@
   inputs = {
     # use channel tarball instead of github. thanks isabel :)
     # https://github.com/isabelroses/dotfiles/blob/main/flake.nix#L9
-    nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
     nixpkgs-unstable.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
 
     disko.url = "github:nix-community/disko";
