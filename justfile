@@ -45,7 +45,7 @@ diff-system TARGET=HOST:
 
 # errors, if the given target is not the host system
 [private]
-check_host TARGET:
+@check_host TARGET:
     [ {{ TARGET }} = {{ HOST }} ]
 
 build TARGET=HOST:
