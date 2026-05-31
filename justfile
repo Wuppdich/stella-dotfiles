@@ -57,6 +57,9 @@ switch TARGET=HOST: (check_host TARGET)
 test TARGET=HOST: (check_host TARGET)
     sudo just rebuild test {{ TARGET }}
 
+boot TARGET=HOST: (check_host TARGET)
+    sudo just rebuild boot {{ TARGET }}
+
 deploy TARGET DESTINATION:
     echo "### NOM EATS THE SUDO PROMPT! ENTER BLINDLY! ###"
     just rebuild switch {{ TARGET }} "." \
