@@ -85,3 +85,7 @@ stats:
 
 update-secrets:
     cd secrets && sops updatekeys $(find . -type f -regex ".*\/[a-zA-Z0-9-]+\.ya?ml")
+
+clean-store:
+    nix-collect-garbage --delete-older-than 7d
+    nix store optimise
