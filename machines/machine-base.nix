@@ -33,6 +33,8 @@
     ../modules/lix.nix
     ../modules/contabo-networking.nix
   ];
+  
+  garden.lix.enable = true;
 
   environment.systemPackages = with pkgs; [
     curl
