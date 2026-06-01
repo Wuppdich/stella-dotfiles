@@ -5,7 +5,7 @@ default:
 
 NIX_CURRENT_SYSTEM := "/run/current-system/"
 HOST := "$(hostname)"
-LATEST_COMMIT_HASH := "$(git rev-parse --short HEAD)"
+LATEST_COMMIT_HASH := "$(git rev-parse --short main)"
 LATEST_COMMIT_FOLDER := "commit-" + LATEST_COMMIT_HASH
 TMP_DIR := "/tmp/just-nix/"
 GIT_CLONE_PATH := TMP_DIR + LATEST_COMMIT_FOLDER
@@ -21,13 +21,13 @@ git-clone-to-tmp:
     #!/usr/bin/env bash
     set -euo pipefail
     if [ ! -d {{ GIT_CLONE_PATH }} ]; then
-        git clone ./ {{ GIT_CLONE_PATH }}
+        git clone --branch=main ./ {{ GIT_CLONE_PATH }}
     fi
 
 eval TARGET=HOST:
     less $(just flake-path-info . {{ TARGET }})
 
-# compares derivation of the latest commit to derivation of current worktree
+# compares derivation of the latest commit in the main branch to derivation of current worktree
 diff TARGET=HOST: git-clone-to-tmp
     #!/usr/bin/env bash
     set -euo pipefail
