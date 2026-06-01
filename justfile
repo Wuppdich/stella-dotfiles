@@ -33,7 +33,7 @@ diff TARGET=HOST: git-clone-to-tmp
     set -euo pipefail
     current=$(just flake-path-info {{ GIT_CLONE_PATH }} {{ TARGET }})
     prev=$(just flake-path-info . {{ TARGET }})
-    lix diff $current $prev
+    lix diff $current $prev | less
 
 # compares current system to derivation of current worktree
 diff-system TARGET=HOST:
@@ -41,7 +41,7 @@ diff-system TARGET=HOST:
     set -euo pipefail
     current=$(nix path-info --derivation {{ NIX_CURRENT_SYSTEM }})
     prev=$(just flake-path-info . {{ TARGET }})
-    lix diff $current $prev
+    lix diff $current $prev | less
 
 # errors, if the given target is not the host system
 [private]
