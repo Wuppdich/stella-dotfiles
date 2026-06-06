@@ -59,15 +59,15 @@ build TARGET=HOST:
 
 # switch system to flake output of current hostname
 switch PROFILE="":
-    sudo just rebuild switch {{ HOST }} {{ PROFILE_ARG(PROFILE) }}
+    sudo just rebuild switch {{ HOST }} . {{ PROFILE_ARG(PROFILE) }}
 
 # switch system to flake ouput of current hostname, but don't create a boot entry
 test PROFILE="":
-    sudo just rebuild test {{ HOST }} {{ PROFILE_ARG(PROFILE) }}
+    sudo just rebuild test {{ HOST }} . {{ PROFILE_ARG(PROFILE) }}
 
 # build flake ouput of current system and assign it to a boot entry
 boot PROFILE="":
-    sudo just rebuild boot {{ HOST }} {{ PROFILE_ARG(PROFILE) }}
+    sudo just rebuild boot {{ HOST }} . {{ PROFILE_ARG(PROFILE) }}
 
 # deploy flake ouput TARGET on host DESTINATION
 deploy TARGET DESTINATION:
