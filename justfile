@@ -14,7 +14,7 @@ GIT_CLONE_PATH := TMP_DIR + LATEST_COMMIT_FOLDER
 PROFILE_ARG(PROFILE) := PROFILE && '--profile-name ' + PROFILE
 
 [private]
-flake-path-info PATH TARGET:
+@flake-path-info PATH TARGET:
     nix path-info --derivation \
         {{ PATH }}#nixosConfigurations.{{ TARGET }}.config.system.build.toplevel
 
