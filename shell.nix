@@ -10,6 +10,7 @@ pkgs.mkShell {
     age
     ssh-to-age
     nix-output-monitor
+    rich-cli
   ];
 }
 

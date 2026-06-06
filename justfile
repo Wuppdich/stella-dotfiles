@@ -27,7 +27,14 @@ git-clone-to-tmp:
     fi
 
 eval TARGET=HOST:
-    less $(just flake-path-info . {{ TARGET }})
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo evaluating flake...
+    FLAKE_PATH=$(just flake-path-info . {{ TARGET }})
+    echo processing and displaying derivation...
+    nix derivation show --recursive $FLAKE_PATH \
+    | rich - --json --force-terminal \
+    | less
 
 # compares derivation of the latest commit in the main branch to derivation of current worktree
 diff TARGET=HOST: git-clone-to-tmp
