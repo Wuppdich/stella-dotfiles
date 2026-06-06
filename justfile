@@ -26,6 +26,7 @@ git-clone-to-tmp:
         git clone --branch=main ./ {{ GIT_CLONE_PATH }}
     fi
 
+# evaluates flake system output of TARGET (default $(localhost)) and shows the full system derivation
 eval TARGET=HOST:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -52,18 +53,23 @@ diff-system TARGET=HOST:
     prev=$(just flake-path-info . {{ TARGET }})
     lix diff $current $prev | less
 
+# just build flake output TARGET (default $(localhost))
 build TARGET=HOST:
     just rebuild build {{ TARGET }}
 
+# switch system to flake output of current hostname
 switch PROFILE="":
     sudo just rebuild switch {{ HOST }} {{ PROFILE_ARG(PROFILE) }}
 
+# switch system to flake ouput of current hostname, but don't create a boot entry
 test PROFILE="":
     sudo just rebuild test {{ HOST }} {{ PROFILE_ARG(PROFILE) }}
 
+# build flake ouput of current system and assign it to a boot entry
 boot PROFILE="":
     sudo just rebuild boot {{ HOST }} {{ PROFILE_ARG(PROFILE) }}
 
+# deploy flake ouput TARGET on host DESTINATION
 deploy TARGET DESTINATION:
     echo "### NOM EATS THE SUDO PROMPT! ENTER BLINDLY! ###"
     just rebuild switch {{ TARGET }} "." \
@@ -90,9 +96,11 @@ stats:
         --sort complexity \
         --avg-wage 84945
 
+# update sops secrets with new keys
 update-secrets:
     cd secrets && sops updatekeys $(find . -type f -regex ".*\/[a-zA-Z0-9-]+\.ya?ml")
 
+# clean up the nix-store by collecting garbage and linking duplicates
 clean-store:
     nix-collect-garbage --delete-older-than 7d
     nix store optimise
