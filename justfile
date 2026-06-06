@@ -1,3 +1,5 @@
+set unstable
+
 [default]
 [private]
 default:
@@ -9,7 +11,7 @@ LATEST_COMMIT_HASH := "$(git rev-parse --short main)"
 LATEST_COMMIT_FOLDER := "commit-" + LATEST_COMMIT_HASH
 TMP_DIR := "/tmp/just-nix/"
 GIT_CLONE_PATH := TMP_DIR + LATEST_COMMIT_FOLDER
-
+PROFILE_ARG(PROFILE) := PROFILE && '--profile-name ' + PROFILE
 
 [private]
 flake-path-info PATH TARGET:
@@ -43,18 +45,17 @@ diff-system TARGET=HOST:
     prev=$(just flake-path-info . {{ TARGET }})
     lix diff $current $prev | less
 
-
 build TARGET=HOST:
     just rebuild build {{ TARGET }}
 
-switch:
-    sudo just rebuild switch {{ HOST }}
+switch PROFILE="":
+    sudo just rebuild switch {{ HOST }} {{ PROFILE_ARG(PROFILE) }}
 
-test:
-    sudo just rebuild test {{ HOST }}
+test PROFILE="":
+    sudo just rebuild test {{ HOST }} {{ PROFILE_ARG(PROFILE) }}
 
-boot:
-    sudo just rebuild boot {{ HOST }}
+boot PROFILE="":
+    sudo just rebuild boot {{ HOST }} {{ PROFILE_ARG(PROFILE) }}
 
 deploy TARGET DESTINATION:
     echo "### NOM EATS THE SUDO PROMPT! ENTER BLINDLY! ###"
