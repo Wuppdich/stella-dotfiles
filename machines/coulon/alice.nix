@@ -40,6 +40,7 @@
       vesktop
       signal-desktop
       tuba
+      hyprlauncher
       # programmierung
       kitty
       nix-output-monitor

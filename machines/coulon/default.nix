@@ -16,7 +16,7 @@
     ./nvf.nix
   ];
 
-  garden.gnome.enable = true;
+  garden.hyprland.enable = true;
 
   # this will instantiate the secret in /run/secrets, making it available after evaluation
   sops.secrets."coulon/binary-cache/private" = {

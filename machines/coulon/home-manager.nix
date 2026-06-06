@@ -10,6 +10,14 @@
     users.alice =
       { pkgs, ... }:
       {
+        wayland.windowManager.hyprland = {
+          enable = true;
+          package = null;
+          portalPackage = null;
+          systemd.variables = [ "--all" ];
+          configType = "lua";
+          extraConfig = builtins.readFile ../../modules/hyprland.lua;
+        };
         programs = {
           kitty = {
             enable = true;
