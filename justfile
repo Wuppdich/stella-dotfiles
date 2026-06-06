@@ -102,5 +102,5 @@ update-secrets:
 
 # clean up the nix-store by collecting garbage and linking duplicates
 clean-store:
-    nix-collect-garbage --delete-older-than 7d
-    nix store optimise
+    sudo nix-collect-garbage --delete-older-than 7d
+    sudo nix store optimise
