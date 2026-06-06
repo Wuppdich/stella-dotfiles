@@ -43,22 +43,18 @@ diff-system TARGET=HOST:
     prev=$(just flake-path-info . {{ TARGET }})
     lix diff $current $prev | less
 
-# errors, if the given target is not the host system
-[private]
-@check_host TARGET:
-    [ {{ TARGET }} = {{ HOST }} ]
 
 build TARGET=HOST:
     just rebuild build {{ TARGET }}
 
-switch TARGET=HOST: (check_host TARGET)
-    sudo just rebuild switch {{ TARGET }}
+switch:
+    sudo just rebuild switch {{ HOST }}
 
-test TARGET=HOST: (check_host TARGET)
-    sudo just rebuild test {{ TARGET }}
+test:
+    sudo just rebuild test {{ HOST }}
 
-boot TARGET=HOST: (check_host TARGET)
-    sudo just rebuild boot {{ TARGET }}
+boot:
+    sudo just rebuild boot {{ HOST }}
 
 deploy TARGET DESTINATION:
     echo "### NOM EATS THE SUDO PROMPT! ENTER BLINDLY! ###"
