@@ -30,66 +30,40 @@
   outputs =
     {
       nixpkgs,
-      disko,
-      sops-nix,
-      home-manager,
-      musnix,
       ...
     }@inputs:
     {
       # Use this for all other targets
       # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
       nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
-          modules = [
-          ];
-        };
+        # the default should do nothing
+        default = inputs.nixpkgs.lib.nixosSystem { };
 
         # nix run github:nix-community/nixos-anywhere -- \
         #     --generate-hardware-config nixos-generate-config ./machines/egg/hardware-configuration.nix \
         #     --flake ./#egg \
         #     --target-host root@123.123.123.123
-        egg = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./machines/egg
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-            disko.nixosModules.disko
-            sops-nix.nixosModules.sops
-          ];
+        egg = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./machines/egg ];
+
           specialArgs = { inherit inputs; };
         };
 
-        coulon = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./machines/coulon
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-            disko.nixosModules.disko
-            sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-            musnix.nixosModules.musnix
-          ];
+        coulon = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./machines/coulon ];
+
           specialArgs = { inherit inputs; };
         };
 
-        pyrit = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./machines/pyrit
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-            disko.nixosModules.disko
-            sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-            musnix.nixosModules.musnix
-          ];
+        pyrit = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./machines/pyrit ];
+
           specialArgs = { inherit inputs; };
         };
 
-        rabe = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./machines/rabe
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-            disko.nixosModules.disko
-            sops-nix.nixosModules.sops
-          ];
+        rabe = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./machines/rabe ];
+
           specialArgs = { inherit inputs; };
         };
 

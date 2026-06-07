@@ -1,10 +1,13 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }:
 {
+  nixpkgs.hostPlatform = "x86_64-linux";
   imports = [
+    inputs.musnix.nixosModules.musnix
     ./hardware-configuration.nix
     ../machine-base.nix
     ./fix.nix

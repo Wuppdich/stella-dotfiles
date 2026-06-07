@@ -3,10 +3,14 @@
   modulesPath,
   config,
   values,
+  inputs,
   ...
 }:
 {
+  nixpkgs.hostPlatform = "x86_64-linux";
+  
   imports = [
+    inputs.disko.nixosModules.disko
     ../machine-base.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")

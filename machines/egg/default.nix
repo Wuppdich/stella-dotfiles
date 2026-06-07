@@ -2,10 +2,14 @@
 {
   modulesPath,
   values,
+  inputs,
   ...
 }:
 {
+  nixpkgs.hostPlatform = "x86_64-linux";
+  
   imports = [
+    inputs.disko.nixosModules.disko
     ./disk-config.nix
     ./hardware-configuration.nix
     ../machine-base.nix

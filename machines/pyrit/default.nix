@@ -3,10 +3,14 @@
   pkgs,
   lib,
   pkgsUnstable,
+  inputs,
   ...
 }:
 {
+  nixpkgs.hostPlatform = "x86_64-linux";
+  
   imports = [
+    inputs.musnix.nixosModules.musnix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./fix.nix
