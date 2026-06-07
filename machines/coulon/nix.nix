@@ -14,7 +14,6 @@
   };
 
   nixpkgs.config = {
-
     # join UnfreePredicate with pkgs._cuda.lib.allowUnfreeCudaPredicate somehow
     # https://nixos.org/manual/nixpkgs/unstable/#cuda-configuring-nixpkgs-for-cuda
     allowUnfreePredicate =

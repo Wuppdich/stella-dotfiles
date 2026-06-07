@@ -60,6 +60,7 @@
     graphics.enable32Bit = true;
   };
 
+  # realtime management
   security.rtkit.enable = true;
 
   # Enable sound with pipewire.
