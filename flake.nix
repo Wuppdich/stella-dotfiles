@@ -5,14 +5,22 @@
     nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
     nixpkgs-unstable.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
 
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-26.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    musnix.url = "github:musnix/musnix";
-    musnix.inputs.nixpkgs.follows = "nixpkgs";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     secrets = {
       url = "git+ssh://git@git.gay/stellawupp/stella-dotfiles-secrets.git?ref=main&shallow=1";
       flake = false;
