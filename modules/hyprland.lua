@@ -15,13 +15,22 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- BenQ monitor
 hl.monitor({
-    output   = "",
+    output   = "DP-2",
     mode     = "preferred",
-    position = "auto",
+    position = "0x1080",
     scale    = "auto",
+    bitdepth = 10,
 })
 
+-- samsung monitor
+hl.monitor({
+    output   = "DP-3",
+    mode     = "preferred",
+    position = "150x0",
+    scale    = "auto",
+})
 
 ---------------------
 ---- MY PROGRAMS ----
