@@ -88,6 +88,7 @@
     usbmuxd.enable = true; # iPhone
     # Load nvidia driver for Xorg and Wayland
     xserver.videoDrivers = [ "nvidia" ];
+    ratbagd.enable = true;
   };
 
   musnix.enable = true;

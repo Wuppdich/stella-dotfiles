@@ -40,6 +40,7 @@
       vesktop
       signal-desktop
       tuba
+      piper
       hyprlauncher
       kdePackages.dolphin
       # programmierung
