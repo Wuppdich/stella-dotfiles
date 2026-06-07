@@ -41,6 +41,7 @@
       signal-desktop
       tuba
       hyprlauncher
+      kdePackages.dolphin
       # programmierung
       kitty
       nix-output-monitor
