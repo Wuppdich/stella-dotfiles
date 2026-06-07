@@ -5,5 +5,6 @@
     ./gnome-desktop.nix
     ./lix.nix
     ./hyprland.nix
+    ./packages.nix
   ];
 }
