@@ -13,7 +13,7 @@
     ./nix.nix
     ./locale.nix
     ./nvidia.nix
-    ./alice-packages.nix
+    ./alice-user.nix
     ./nvf.nix
     ./boot.nix
     ./fonts.nix
