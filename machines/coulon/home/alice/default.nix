@@ -1,5 +1,9 @@
 { ... }:
 {
+  imports = [
+    ./starship.nix
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
