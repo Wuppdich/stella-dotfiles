@@ -4,8 +4,8 @@
   pkgs,
   ...
 }:
-with lib;
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.garden.hyprland;
 in
 {

@@ -1,6 +1,10 @@
-{ config, lib, options, ... }:
-with lib;
+{
+  config,
+  lib,
+  ...
+}:
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.garden.gnome;
 in
 {
