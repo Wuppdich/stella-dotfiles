@@ -27,7 +27,7 @@ git-clone-to-tmp:
     fi
 
 # evaluates flake system output of TARGET (default $(localhost)) and shows the full system derivation
-eval TARGET=HOST:
+derivation TARGET=HOST:
     #!/usr/bin/env bash
     set -euo pipefail
     echo evaluating flake...
@@ -36,6 +36,10 @@ eval TARGET=HOST:
     nix derivation show --recursive $FLAKE_PATH \
     | rich - --json --force-terminal \
     | less
+
+# evaluates flake system output of TARGET (default $(localhost))
+eval TARGET=HOST:
+    just flake-path-info . {{ TARGET }}
 
 # compares derivation of the latest commit in the main branch to derivation of current worktree
 diff TARGET=HOST: git-clone-to-tmp
