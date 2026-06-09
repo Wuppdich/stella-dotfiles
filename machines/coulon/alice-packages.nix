@@ -44,6 +44,7 @@
       hyprlauncher
       kdePackages.dolphin
       # programmierung
+      evince
       kitty
       nix-output-monitor
       vscode
