@@ -12,6 +12,6 @@
     extraSpecialArgs = { inherit inputs; };
     sharedModules = [ (inputs.self + /modules/packages.nix) ];
 
-    users.alice = import ./home-alice.nix;
+    users.alice = import ./alice;
   };
 }
