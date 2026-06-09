@@ -14,7 +14,7 @@
     ./nix.nix
     ./locale.nix
     ./nvidia.nix
-    ./alice.nix
+    ./alice-packages.nix
     ./home-manager.nix
     ./nvf.nix
   ];
