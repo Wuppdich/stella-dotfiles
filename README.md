@@ -1,6 +1,8 @@
 # Stella's nixfiles
 
-This is my configuration for the machines i run. At the time of writing i'm in the middle of a huge refactor. After merging three machine configs into a nix-flake based setup, it has a lot of repeated code and lacks a great deal of modularization.
+This is my configuration for the machines i run.
+
+**WIP!:** *At the time of writing i'm in the middle of a huge refactor. After merging three machine configs into a nix-flake based setup, it has a lot of repeated code and lacks a great deal of modularization.*
 
 ## Structure
 ### machines folder
