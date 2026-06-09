@@ -1,10 +1,17 @@
-{ pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   fonts.packages =
     with pkgs;
     [
     ]
     ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
+
   # home manager config
   home-manager = {
     useGlobalPkgs = true;

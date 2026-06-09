@@ -3,12 +3,15 @@
   ...
 }:
 {
-  # home manager config
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
+
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.alice = import ./home-alice.nix;
     backupFileExtension = "backup";
+    extraSpecialArgs = { inherit inputs; };
+    sharedModules = [ (inputs.self + /modules/packages.nix) ];
+
+    users.alice = import ./home-alice.nix;
   };
 }
