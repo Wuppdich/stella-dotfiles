@@ -1,6 +1,7 @@
 { config, lib, ... }:
-with lib;
 let
+  inherit (lib) mkEnableOption mkOption mkIf;
+  inherit (lib.types) str listOf;
   cfg = config.networking.contabo;
 in
 {
@@ -8,11 +9,11 @@ in
     enable = mkEnableOption "contabo networking";
     mac = mkOption {
       # TODO: match regex: https://wiki.nixos.org/wiki/NixOS_modules#Examples
-      type = types.str;
+      type = str;
     };
     addresses = mkOption {
       # TODO: match regex: https://wiki.nixos.org/wiki/NixOS_modules#Examples
-      type = types.listOf types.str;
+      type = listOf str;
     };
     # TODO: define IPv4 gateway option, with generated as default
     # TODO: define routes option, with generated routes as default
@@ -26,7 +27,8 @@ in
       networks."10-contabo-network" =
         let
           # Gateway assumed by setting the last byte of the ip to 1
-          mkGateway = address: (builtins.elemAt (builtins.split "[[:digit:]]{1,3}\/[[:digit:]]{1,2}$" address) 0) + "1";
+          mkGateway =
+            address: (builtins.elemAt (builtins.split "[[:digit:]]{1,3}\/[[:digit:]]{1,2}$" address) 0) + "1";
           # values from `netplan get` and /run/systemd/network/*.{network|link} on the original server
           netplan = {
             dns = [
