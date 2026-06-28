@@ -25,6 +25,10 @@
       url = "git+ssh://git@git.gay/stellawupp/stella-dotfiles-secrets.git?ref=main&shallow=1";
       flake = false;
     };
+    quadlet-nix = {
+      url = "github:SEIAROTg/quadlet-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

@@ -10,6 +10,7 @@
 
   imports = [
     inputs.disko.nixosModules.disko
+    inputs.quadlet-nix.nixosModules.quadlet
     ../machine-base.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -17,6 +18,7 @@
     ./disk-config.nix
     ./server-user.nix
     ./services.nix
+    ./containers.nix
   ];
 
   sops.secrets."rabe/passwords/server".neededForUsers = true;
@@ -34,9 +36,11 @@
       enable = true;
       inherit (values.rabe.network-interface) mac addrIPv4 addrIPv6;
     };
+    nftables.enable = true;
   };
 
   time.timeZone = "Europe/Berlin";
+  
   virtualisation.docker.enable = true;
   # bunch of terminfos so fancy terminal stuff won't break
   environment.enableAllTerminfo = true;
