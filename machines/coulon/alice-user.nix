@@ -37,8 +37,8 @@
       })
       thunderbird
       tor-browser
-      vesktop
-      signal-desktop
+      # vesktop
+      # signal-desktop
       tuba
       piper
       hyprlauncher
@@ -56,7 +56,7 @@
       steam
       lutris
       ludusavi
-      heroic
+      # heroic
       itch
       prismlauncher
       # CGI/CAD
