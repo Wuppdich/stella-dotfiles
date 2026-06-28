@@ -32,8 +32,7 @@
     hostName = "rabe";
     contabo = {
       enable = true;
-      mac = values.rabe.mac;
-      addresses = values.rabe.ipAdresses;
+      inherit (values.rabe.network-interface) mac addrIPv4 addrIPv6;
     };
   };
 

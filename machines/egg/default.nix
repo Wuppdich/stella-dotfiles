@@ -7,7 +7,7 @@
 }:
 {
   nixpkgs.hostPlatform = "x86_64-linux";
-  
+
   imports = [
     inputs.disko.nixosModules.disko
     ./disk-config.nix
@@ -28,9 +28,7 @@
     hostName = "egg";
     contabo = {
       enable = true;
-      # set mac, IPv4 and IPv6 addresses
-      mac = "00:00";
-      addresses = [ "123.123.123.123"  "01::1" ];
+      inherit (values.rabe.network-interface) mac addrIPv4 addrIPv6;
     };
   };
 
