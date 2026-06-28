@@ -38,6 +38,8 @@
 
   time.timeZone = "Europe/Berlin";
   virtualisation.docker.enable = true;
+  # bunch of terminfos so fancy terminal stuff won't break
+  environment.enableAllTerminfo = true;
 
   users = {
     # required so nix can update passwords
