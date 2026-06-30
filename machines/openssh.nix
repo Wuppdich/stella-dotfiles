@@ -3,7 +3,7 @@ let
   inherit (lib) mkDefault;
 in
 {
-  openssh = {
+  services.openssh = {
     enable = mkDefault false;
     settings = {
       PasswordAuthentication = mkDefault false;
