@@ -26,5 +26,9 @@
     # Load nvidia driver for Xorg and Wayland
     xserver.videoDrivers = [ "nvidia" ];
     ratbagd.enable = true; # config daemon for HID
+
+    # daemon for application-level management of storage devices
+    # tldr: makes your usb drive mount
+    udisks2.enable = true;
   };
 }
