@@ -38,7 +38,7 @@
       thunderbird
       tor-browser
       # vesktop
-      # signal-desktop
+      signal-desktop
       tuba
       piper
       hyprlauncher
