@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   services = {
     # Enable sound with pipewire.
     pipewire = {
@@ -30,5 +30,10 @@
     # daemon for application-level management of storage devices
     # tldr: makes your usb drive mount
     udisks2.enable = true;
+
+    dbus = {
+      enable = true;
+      packages = [ pkgs.gcr_4 ];
+    };
   };
 }
