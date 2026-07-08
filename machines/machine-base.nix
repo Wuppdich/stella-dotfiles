@@ -23,6 +23,7 @@
     curl
     btop
     hyfetch
+    wl-clipboard
   ];
 
   programs = {
