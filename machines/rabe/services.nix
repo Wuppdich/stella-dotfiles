@@ -34,6 +34,10 @@
           hostName = "testing.stel.gay";
           extraConfig = "reverse_proxy 127.0.0.1:8080";
         };
+        "todo.stel.gay" = {
+          hostName = "todo.stel.gay";
+          extraConfig = "reverse_proxy 127.0.0.1:3456";
+        };
       };
     };
 
@@ -51,6 +55,18 @@
         };
       };
       credentialsFile = config.sops.templates."rathole-secrets.toml".path;
+    };
+
+    vikunja = {
+      enable = true;
+      address = "127.0.0.1";
+      port = 3456;
+      frontendHostname = "todo.stel.gay";
+      frontendScheme = "https";
+      settings = {
+        service.enableregistration = false;
+        defaultsettings.week_start = 1;
+      };
     };
   };
 
