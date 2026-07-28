@@ -26,5 +26,10 @@
     git.package = pkgs.git;
     direnv.enable = true;
     wireshark.enable = true;
+
+    ausweisapp = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 }

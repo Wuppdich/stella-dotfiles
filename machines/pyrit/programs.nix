@@ -16,6 +16,10 @@
       remotePlay.openFirewall = true;
     };
     direnv.enable = true;
+    ausweisapp = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   sops.secrets."pyrit/binary-cache/private" = {
