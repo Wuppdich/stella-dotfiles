@@ -37,6 +37,9 @@
 
     # Enable networking
     networkmanager.enable = true;
+    # allow incoming connections from docker network
+    firewall.trustedInterfaces = [ "br-schoonarr" ];
+    firewall.logRefusedConnections = true;
   };
 
   # Configure console keymap
