@@ -41,6 +41,10 @@ derivation TARGET=HOST:
 eval TARGET=HOST:
     just flake-path-info . {{ TARGET }}
 
+# launches nix repl shell of TARGET output
+repl TARGET=HOST:
+    nix repl .#nixosConfigurations.{{ TARGET }}
+
 # compares derivation of the latest commit in the main branch to derivation of current worktree
 diff TARGET=HOST: git-clone-to-tmp
     #!/usr/bin/env bash
