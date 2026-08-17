@@ -87,7 +87,6 @@
       rhythmbox
       pkgsUnstable.vcv-rack
       ardour
-      pkgsUnstable.bitwig-studio
       audacity
       plugdata
       roomeqwizard
