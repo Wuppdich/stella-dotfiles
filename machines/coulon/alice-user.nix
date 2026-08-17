@@ -37,7 +37,7 @@
       })
       thunderbird
       tor-browser
-      # vesktop
+      vesktop
       signal-desktop
       tuba
       piper
