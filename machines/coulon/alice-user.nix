@@ -80,7 +80,6 @@
       pkgsUnstable.darktable
       vlc
       kicad
-      pkgsUnstable.davinci-resolve
       kdePackages.kdenlive
       # audio
       spotify
