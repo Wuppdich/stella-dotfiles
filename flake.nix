@@ -71,6 +71,11 @@
           specialArgs = { inherit inputs; };
         };
 
+        elster = inputs.nixpkgs.lib.nixosSystem {
+          modules = [ ./machines/elster ];
+
+          specialArgs = { inherit inputs; };
+        };
       };
     };
 }
