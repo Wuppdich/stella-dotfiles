@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ../machine-base.nix
     ./server-user.nix
+    ./services.nix
   ];
 
   # Bootloader.
