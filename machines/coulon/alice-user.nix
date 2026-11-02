@@ -43,6 +43,7 @@
       piper
       hyprlauncher
       kdePackages.dolphin
+      adw-bluetooth
       # programmierung
       evince
       kitty

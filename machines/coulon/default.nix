@@ -42,6 +42,8 @@
     firewall.logRefusedConnections = true;
   };
 
+  hardware.bluetooth.enable = true;
+
   # Configure console keymap
   console.keyMap = "de";
 
