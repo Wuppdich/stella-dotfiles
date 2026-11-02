@@ -1,5 +1,7 @@
 { config, ... }:
 {
+  # boot.initrd.* is for stage 1
+  # boot.* is for stage 2
   boot = {
     loader = {
       systemd-boot.enable = true;
