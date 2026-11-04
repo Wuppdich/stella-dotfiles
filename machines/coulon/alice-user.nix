@@ -43,6 +43,8 @@
       piper
       hyprlauncher
       kdePackages.dolphin
+      # archive support for dolphin
+      kdePackages.ark
       adw-bluetooth
       # programmierung
       evince
