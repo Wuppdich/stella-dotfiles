@@ -34,7 +34,11 @@
   
   nixpkgs.config = {
     # see https://en.wikipedia.org/wiki/CUDA#GPUs_supported for RTX 3080
-    cudaCapabilities = [ "8.6" ];
-    # cudaForwardCompat = true; # see if this even does anything
+
+    # disabled, because this results in a half our rebuild of a blender module
+    # cudaCapabilities = [ "8.6" ];
+
+    # see if this even does anything
+    # cudaForwardCompat = true; 
   };
 }
