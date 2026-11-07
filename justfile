@@ -13,6 +13,10 @@ TMP_DIR := "/tmp/just-nix/"
 GIT_CLONE_PATH := TMP_DIR + LATEST_COMMIT_FOLDER
 PROFILE_ARG(PROFILE) := PROFILE && '--profile-name ' + PROFILE
 
+update *INPUTS:
+    nix flake update {{ INPUTS }} --commit-lock-file \
+        --commit-lockfile-summary "flake update{{ INPUTS && ' ' + INPUTS }}"
+
 [private]
 @flake-path-info PATH TARGET:
     nix path-info --derivation \
