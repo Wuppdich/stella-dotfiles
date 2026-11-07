@@ -6,5 +6,6 @@
     ./lix.nix
     ./hyprland.nix
     ./packages.nix
+    ./remote-luks-key.nix
   ];
 }

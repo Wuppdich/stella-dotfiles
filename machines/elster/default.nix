@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   nixpkgs.hostPlatform = "x86_64-linux";
@@ -14,6 +18,8 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  garden.remote-luks-key.enable = true;
 
   sops.secrets."elster/passwords/server".neededForUsers = true;
 
