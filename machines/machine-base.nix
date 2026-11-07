@@ -18,6 +18,7 @@
   time.timeZone = lib.mkDefault "Europe/Berlin";
 
   garden.lix.enable = true;
+  garden.fail2ban.enable = true;
 
   environment.systemPackages = with pkgs; [
     curl

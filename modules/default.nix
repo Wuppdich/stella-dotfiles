@@ -7,5 +7,6 @@
     ./hyprland.nix
     ./packages.nix
     ./remote-luks-key.nix
+    ./fail2ban.nix
   ];
 }
